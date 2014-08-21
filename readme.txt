@@ -34,4 +34,6 @@ None
 
 == Changelog ==
 = 1.0.2 =
-* Login use visit will not be toggle the cache function to prevent some themes show different Appearance of logged in and non logged in user.
+* Login user visit will not be toggle the cache function to prevent some themes show different Appearance of logged in and non logged in user.
+= 1.0.3 =
+* Login user visit will also toggle the cache function,if the admin bar are not showing. 
