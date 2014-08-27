@@ -28,6 +28,7 @@ None
 
 == Screenshots ==
 1. Admin Panel
+2. Admin Panel
 
 == Upgrade Notice ==
 = 2.0.0 =
@@ -36,6 +37,7 @@ None
 * Support post publish to auto build cache
 * Support post update to auto rebuild cache
 * Support delete post to delete cache
+* English Support
 
 = 1.0.3 =
 * Login user visit will also toggle the cache function,if the admin bar are not showing. 
