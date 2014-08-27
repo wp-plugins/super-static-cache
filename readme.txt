@@ -4,7 +4,7 @@ Donate link: http://www.hitoy.org/
 Tags: Wordpress Static Cache, Pure static Cache Plugin
 Requires at least: 3.0.1
 Tested up to: 3.9.2
-Stable tag: 1.3.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,10 +30,16 @@ None
 1. Admin Panel
 
 == Upgrade Notice ==
-None
+= 2.0.0 =
+* Bug Fixed
+* Support rewrite mode
+* Support post publish to auto build cache
+* Support post update to auto rebuild cache
+* Support delete post to delete cache
 
-== Changelog ==
-= 1.0.2 =
-* Login user visit will not be toggle the cache function to prevent some themes show different Appearance of logged in and non logged in user.
 = 1.0.3 =
 * Login user visit will also toggle the cache function,if the admin bar are not showing. 
+
+= 1.0.2 =
+* Login user visit will not be toggle the cache function to prevent some themes show different Appearance of logged in and non logged in user.
+

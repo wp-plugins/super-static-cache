@@ -1,0 +1,173 @@
+#: super-static-cache-admin.php:21
+msgid "The plugin prohibited: You dont have write permission on "
+msgstr "插件被禁止：没有写入权限"
+
+#: super-static-cache-admin.php:25
+msgid "Your Permalinks Setting are not support cache!"
+msgstr "固定链接设置不支持缓存"
+
+#: super-static-cache-admin.php:29
+msgid "Your PHP version too low to support cache!"
+msgstr "PHP版本过低，不支持缓存"
+
+#: super-static-cache-admin.php:44
+#: super-static-cache-admin.php:46
+msgid "Purge "
+msgstr "清除"
+
+#: super-static-cache-admin.php:44
+msgid " Success"
+msgstr "成功"
+
+#: super-static-cache-admin.php:46
+msgid " Failure"
+msgstr "失败"
+
+#: super-static-cache-admin.php:54
+msgid "Notice"
+msgstr "提示"
+
+#: super-static-cache-admin.php:62
+msgid "About Super Static Cache"
+msgstr "关于Super Static Cache"
+
+#: super-static-cache-admin.php:63
+msgid "Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>.<br/>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000."
+msgstr "Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>负责开发维护.<br/>它是一款高级纯静态化插件，配置简单缓存效率高。它会直接缓存html文档，缓存之后，不再需要数据库的支持。当您的wordpress文章数量超过5000时，Super Static Cache是不错的选择。"
+
+#: super-static-cache-admin.php:64
+msgid "Have any suggestions, please contact vip@hitoy.org."
+msgstr "有任何问题或者建议，可以联系vip@hitoy.org"
+
+#: super-static-cache-admin.php:65
+msgid "Rating for This Plugin"
+msgstr "为这个插件评分"
+
+#: super-static-cache-admin.php:66
+msgid "Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development."
+msgstr "请为这个插件<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">评分</a>并告诉我您的需求，对这我的开发很有用。"
+
+#: super-static-cache-admin.php:67
+msgid "Help Me"
+msgstr "帮助我"
+
+#: super-static-cache-admin.php:68
+msgid "You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href='' target='_blank'>Improve translation</a>."
+msgstr "你可以为我<a href='http://www.hitoy.org/donate' target='_blank'>捐款</a>来保持这个插件的长期开发维护，也可以帮助我<a href='' target='_blank'>改善翻译</a>。"
+
+#: super-static-cache-admin.php:77
+msgid "Caching Mode"
+msgstr "缓存模式"
+
+#: super-static-cache-admin.php:79
+msgid "Different between direct and rewrite caching: direct caching will caching all the file on your WP install path, rewrite caching will create a directory on your WP install path, all the caching files will storage in this directory, you need to update a rewrite rule to enable this function."
+msgstr "直接缓存和重写缓存的区别：直接缓存会把缓存文件直接生成在WP的安装目录，重写缓存会在WP安装目录下创建一个缓存目录，并把缓存文件放到这个缓存目录里面。重写模式需要服务器支持并增加一条重写规则。"
+
+#: super-static-cache-admin.php:82
+msgid "close"
+msgstr "关闭缓存"
+
+#: super-static-cache-admin.php:84
+msgid "direct caching (Recommended)"
+msgstr "直接缓存(推荐)"
+
+#: super-static-cache-admin.php:86
+msgid "rewrite caching"
+msgstr "重写缓存"
+
+#: super-static-cache-admin.php:102
+#: super-static-cache-admin.php:120
+msgid "Sorry, Not support IIS yet"
+msgstr "暂时还不支持IIS"
+
+#: super-static-cache-admin.php:105
+#: super-static-cache-admin.php:123
+msgid "Sorry, Your web server is not detected"
+msgstr "没有监测到您的Web服务器类型"
+
+#: super-static-cache-admin.php:145
+#: super-static-cache-admin.php:159
+msgid "update"
+msgstr "升级"
+
+#: super-static-cache-admin.php:148
+msgid "No Caching Page"
+msgstr "列外页面"
+
+#: super-static-cache-admin.php:149
+msgid "If you select, the plugin will not caching these pages.Cached files will not affected. If you select one, you need to delete the cached file."
+msgstr "被选择的页面将不会被缓存，此设置对已经缓存过的文件没有影响"
+
+#: super-static-cache-admin.php:151
+msgid "Home Page"
+msgstr "首页"
+
+#: super-static-cache-admin.php:152
+msgid "Post Page"
+msgstr "文章页面"
+
+#: super-static-cache-admin.php:153
+msgid "Category Page"
+msgstr "分类页面"
+
+#: super-static-cache-admin.php:154
+msgid "Tag Page"
+msgstr "Tag页面"
+
+#: super-static-cache-admin.php:155
+msgid "Author Page"
+msgstr "作者页面"
+
+#: super-static-cache-admin.php:156
+msgid "date Page"
+msgstr "日期页面"
+
+#: super-static-cache-admin.php:157
+msgid "Feed(Recommended)"
+msgstr "XSS源(推荐)"
+
+#: super-static-cache-admin.php:162
+msgid "Purge cache files"
+msgstr "清除缓存文件"
+
+#: super-static-cache-admin.php:163
+msgid "You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br/>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br/>For example, you input /a.html, It will purge a.html on your wordpress path rather than the other documents"
+msgstr "你可以输入一个文件名来，当输入的是一个文件时，这个文件会被直接清除，当输入是一个目录时，目录和目录下的文件都会被清除。<br/>例如，输入/a.html，系统会清除wordpress安装目录下的a.html文件。"
+
+#: super-static-cache-admin.php:164
+msgid "Are you really want to do this?"
+msgstr "确定删除？"
+
+#: super-static-cache-admin.php:166
+msgid "Purge Files"
+msgstr "清除缓存"
+
+#~ msgid "Feed"
+#~ msgstr "RSS源"
+
+#~ msgid "Warning"
+#~ msgstr "警告"
+
+#~ msgid "缓存模式"
+#~ msgstr "Cache Mode"
+
+#~ msgid "关闭"
+#~ msgstr "close"
+
+#~ msgid "直接缓存"
+#~ msgstr "direct mode"
+
+#~ msgid "重写缓存"
+#~ msgstr "rewrite mode"
+
+#~ msgid "保存"
+#~ msgstr "Update"
+
+#~ msgid "列外页面"
+#~ msgstr "no cache page"
+
+#~ msgid "direct mode"
+#~ msgstr "直接缓存"
+
+#~ msgid "rewrite mode"
+#~ msgstr "重写缓存"
