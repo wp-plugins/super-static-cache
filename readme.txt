@@ -28,7 +28,6 @@ None
 
 == Screenshots ==
 1. Admin Panel
-2. Admin Panel
 
 == Upgrade Notice ==
 = 2.0.2 =
