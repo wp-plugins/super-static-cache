@@ -5,7 +5,7 @@ RewriteRule ^index\.php$ - [L]
 RewriteRule ^super-static-cache/ - [L]
 RewriteCond %{DOCUMENT_ROOT}/wp_install_dir/super-static-cache/$1 -f
 RewriteRule ^(.*)$ /wp_install_dir/super-static-cache/$1 [L]
-RewriteCond %{DOCUMENT_ROOT}/wp_install_dir/super-static-cache/$1 -d
+RewriteCond %{DOCUMENT_ROOT}/wp_install_dir/super-static-cache/$1/index.html -f
 RewriteRule ^(.*)$ /wp_install_dir/super-static-cache/$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

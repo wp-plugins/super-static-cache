@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 2.0.2
+Version: 2.0.3
 Author: Hitoy
 Author URI: http://www.hitoy.org/
  */
@@ -159,32 +159,36 @@ class WpstaticCache{
 		if(empty($uri)) return false;
 
 		if($this->cachemod=="direct"){
-			$aburi=$this->wppath.$uri;
+			$aburi=$this->wppath."/".$uri;
 		}else if($this->cachemod=="rewrite"){
-			$aburi=$this->wppath.$this->cachedir.$uri;
+			$aburi=$this->wppath.$this->cachedir."/".$uri;
 		}
 		if(!file_exists($aburi)){
 			return false;
 		}
-		if(is_file($aburi)){
-			return @unlink($aburi);
-		}else if(is_dir($aburi)){
-			//删除目录下所有文件
-			$dir=opendir($aburi);
-			while(($file = readdir($dir)) !== false){
-				if($file=="."||$file=="..") continue;
-				@unlink($aburi."/".$file);
+		return $this->removeuri($aburi);
+	}
+
+	//递归删除缓存
+	private function removeuri($path){
+		if(is_dir($path)){
+			$file_list= scandir($path);
+			foreach ($file_list as $file){
+				if( $file!='.' && $file!='..'){
+					$this->removeuri($path.'/'.$file);
+				}
 			}
-			closedir($dir);
-			//删除目录
-			return @rmdir($aburi);
+			return @rmdir($path);
+		}else{
+			return @unlink($path);
 		}
 	}
+
 	//删除文章时，WP的hook
 	public function trash_post($id){
 		$url=get_permalink($id);
 		preg_match("/^[^:]+:\/\/[^\/]+(\S+)/i",$url,$match);
-			$uri=substr(str_replace("//","/",$this->docuroot.$match[1]),strlen($this->wppath)-1);
+		$uri=substr(str_replace("//","/",$this->docuroot.$match[1]),strlen($this->wppath)-1);
 		#@unlink($this->get_request_filename($uri));
 		$this->delete_cache($uri);
 	}
@@ -244,4 +248,3 @@ if(is_admin()){
 	//后台管理界面
 	require("super-static-cache-admin.php");
 }
-
