@@ -30,6 +30,9 @@ None
 1. Admin Panel
 
 == Upgrade Notice ==
+= 2.0.4 =
+* auto update and auto delete cache function bug fixed with unicode url
+
 = 2.0.3 =
 * Purge cache functional upgrading
 * Apache Rewrite Rules update
