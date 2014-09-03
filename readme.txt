@@ -31,6 +31,9 @@ None
 2. Admin Panel
 
 == Upgrade Notice ==
+= 2.0.2 =
+* add non ASCII characters URL cache support
+
 = 2.0.1 =
 * Nginx Rewrite Rules bug Fixed 
 
