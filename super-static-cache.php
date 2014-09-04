@@ -175,7 +175,7 @@ class WpstaticCache{
 		if(is_dir($path)){
 			$file_list= scandir($path);
 			foreach ($file_list as $file){
-				if( $file!='.' && $file!='..'){
+				if( $file!='.' && $file!='..' && $file!='rewrite_ok.txt'){
 					$this->removeuri($path.'/'.$file);
 				}
 			}
