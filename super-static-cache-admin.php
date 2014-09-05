@@ -93,7 +93,7 @@ function show_cache_manage(){
 	if($docuroot==$homepath){
 		switch ($software){
 		case strstr($software,"nginx"):
-			$rewriterules='try_files $uri $uri/index.html /super-static-cache$uri /super-static-cache$uri/index.html $uri/ /index.php';
+			$rewriterules='try_files $uri $uri/index.html /super-static-cache$uri /super-static-cache$uri/index.html $uri/ /index.php;';
 			break;
 		case strstr($software,"apache"):
 			$rewriterules=htmlspecialchars(file_get_contents(dirname(__FILE__)."/apache_rewrite_root"));
