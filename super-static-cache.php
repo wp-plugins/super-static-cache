@@ -33,9 +33,12 @@ class WpstaticCache{
 
 	//主函数，开始进行缓存，注册到template_redirect上
 	//只有前台才触发
+	//只支持GET和POST两种请求方式
 	public function init(){
-		ob_start(array($this,"get_request_html"));
-		register_shutdown_function(array($this,"save_cache_content"));
+		if($_SERVER['REQUEST_METHOD'] =="GET" || $_SERVER['REQUEST_METHOD'] =="POST"){
+			ob_start(array($this,"get_request_html"));
+			register_shutdown_function(array($this,"save_cache_content"));
+		}
 	}
 
 	//获取当前访问页面的HTML内容
