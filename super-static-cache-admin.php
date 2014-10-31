@@ -109,7 +109,7 @@ function show_cache_manage(){
 		$webdir=substr($homepath,strlen($docuroot)-1);
 		switch ($software){
 		case strstr($software,"nginx"):
-			$rewriterules="location ~* $webdir(.*)$ {\n\ttry_files \$uri \$uri/index.html $webdir"."super-static-cache/$1 ".$webdir."super-static-cache/$1/index.html \$uri/".$webdir."index.php; \n}";
+			$rewriterules="location ~* $webdir(.*)$ {\n\ttry_files \$uri \$uri/index.html $webdir"."super-static-cache/$1 ".$webdir."super-static-cache/$1/index.html \$uri/ ".$webdir."index.php; \n}";
 			break;
 		case strstr($software,"apache"):
 			$rewriterules=file_get_contents(dirname(__FILE__)."/apache_rewrite_dir");
