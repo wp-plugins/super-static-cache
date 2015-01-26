@@ -1,0 +1,4 @@
+location ~* /wp_install_dir/(.*)$ {
+    try_files $uri $uri/index.html /wp_install_dir/super-static-cache/$1 /wp_install_dir/super-static-cache/$1/index.html $uri/ /wp_install_dir/index.php;
+}
+                

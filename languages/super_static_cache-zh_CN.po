@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: super static cache 2.0.0\n"
+"Project-Id-Version: super static cache 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 08:56+0800\n"
-"PO-Revision-Date: 2014-08-27 08:57+0800\n"
+"POT-Creation-Date: 2015-01-26 16:26+0800\n"
+"PO-Revision-Date: 2015-01-26 16:45+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;__\n"
-"X-Poedit-Basepath: F:\\Program Files\\wamp\\www\\zh-cn\\wp-content\\plugins\\super-static-cache\\\n"
+"X-Poedit-Basepath: E:\\super-static-cache\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-Country: CHINA\n"
@@ -18,149 +18,249 @@ msgstr ""
 "X-Poedit-Bookmarks: 0,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: super-static-cache-admin.php:21
-msgid "The plugin prohibited: You dont have write permission on "
-msgstr "插件被禁止：没有写入权限"
+#: options.php:52
+msgid "Your Webserver is "
+msgstr "您的web服务器为"
 
-#: super-static-cache-admin.php:25
-msgid "Your Permalinks Setting are not support cache!"
-msgstr "固定链接设置不支持缓存"
+#: options.php:52
+msgid "We Can not generation a Rewrite Rules for you!"
+msgstr "不能自动生成伪静态规则"
 
-#: super-static-cache-admin.php:29
-msgid "Your PHP version too low to support cache!"
-msgstr "PHP版本过低，不支持缓存"
+#: options.php:63
+msgid "Super Static Cache Settings"
+msgstr "Super Static Cache选项"
 
-#: super-static-cache-admin.php:44
-#: super-static-cache-admin.php:46
-msgid "Purge "
-msgstr "清除"
-
-#: super-static-cache-admin.php:44
-msgid " Success"
-msgstr "成功"
-
-#: super-static-cache-admin.php:46
-msgid " Failure"
-msgstr "失败"
-
-#: super-static-cache-admin.php:54
-msgid "Notice"
-msgstr "提示"
-
-#: super-static-cache-admin.php:62
+#: options.php:65
 msgid "About Super Static Cache"
 msgstr "关于Super Static Cache"
 
-#: super-static-cache-admin.php:63
-msgid "Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>.<br/>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000."
-msgstr "Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>负责开发维护.<br/>它是一款高级纯静态化插件，配置简单缓存效率高。它会直接缓存html文档，缓存之后，不再需要数据库的支持。当您的wordpress文章数量超过5000时，Super Static Cache是不错的选择。"
+#: options.php:67
+msgid ""
+"<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>\n"
+"<p>Have any suggestions, please contact vip@hitoy.org.</p>\n"
+"<h3 style=\"text-align:center\">Rating for This Plugin</h3>\n"
+"<p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>\n"
+"<h3 style=\"text-align:center\">Help Me</h3>\n"
+"<p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>\n"
+"<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">\n"
+"<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n"
+"<input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">\n"
+"<input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">\n"
+"<img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
+"</form></div>"
+msgstr "<p>Super Static Cache由<a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>开发维护。它是一个高级的纯净台的插件，具有配置简单，运行高效的特点，自动更新缓存的特点。如果您的Wordpress文章数量超过5000、由于访问量大造成数据库压力巨大，这个插件将是一个很好的选择</p><p>有任何问题或建议，请联系vip@hitoy.org</p><h3 style=\"text-align:center\">给这个插件评分</h3><p>请<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">为这个插件评分</a>，并告诉我你的需求</p><br/><p>如果这个插件对你有帮助，欢迎给我<a href=\"http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations\" target=\"_blank\">捐款</a>，以帮助其继续开发维护。</p>"
 
-#: super-static-cache-admin.php:64
-msgid "Have any suggestions, please contact vip@hitoy.org."
-msgstr "有任何问题或者建议，可以联系vip@hitoy.org"
-
-#: super-static-cache-admin.php:65
-msgid "Rating for This Plugin"
-msgstr "为这个插件评分"
-
-#: super-static-cache-admin.php:66
-msgid "Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development."
-msgstr "请为这个插件<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">评分</a>并告诉我您的需求，对这我的开发很有用。"
-
-#: super-static-cache-admin.php:67
-msgid "Help Me"
-msgstr "帮助我"
-
-#: super-static-cache-admin.php:68
-msgid "You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href='mailto:vip@hitoy.org'>Improve translation</a>."
-msgstr "你可以为我<a href='http://www.hitoy.org/donate' target='_blank'>捐款</a>来保持这个插件的长期开发维护，也可以帮助我<a href='mailto:vip@hitoy.org'>改善翻译</a>。"
-
-#: super-static-cache-admin.php:77
+#: options.php:79
 msgid "Caching Mode"
 msgstr "缓存模式"
 
-#: super-static-cache-admin.php:79
-msgid "Different between direct and rewrite caching: direct caching will caching all the file on your WP install path, rewrite caching will create a directory on your WP install path, all the caching files will storage in this directory, you need to update a rewrite rule to enable this function."
-msgstr "直接缓存和重写缓存的区别：直接缓存会把缓存文件直接生成在WP的安装目录，重写缓存会在WP安装目录下创建一个缓存目录，并把缓存文件放到这个缓存目录里面。重写模式需要服务器支持并增加一条重写规则。"
+#: options.php:80
+msgid "Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode."
+msgstr "Direct模式将会把缓存内容直接存放在服务器上，这是最节省资源的模式，但是这种方式会造成缓存内容缓存困难。<br/>PHP模式将会把缓存内容存放在一个目录里，这样将会方便管理，但PHP模式会依赖数据库服务器，如果您的数据库服务器宕机，网站将不可访问。<br/>Rewrite模式同样会把缓存内容放到一个目录，一旦缓存成功，网站不再依赖数据库，但是您需要在服务器上添加一条伪静态规则"
 
-#: super-static-cache-admin.php:82
+#: options.php:82
 msgid "close"
 msgstr "关闭缓存"
 
-#: super-static-cache-admin.php:84
-msgid "direct caching (Recommended)"
-msgstr "直接缓存(推荐)"
+#: options.php:83
+msgid "Direct Mode"
+msgstr "直接缓存"
 
-#: super-static-cache-admin.php:86
-msgid "rewrite caching"
-msgstr "重写缓存"
+#: options.php:84
+msgid "PHP Mode"
+msgstr "PHP模式"
 
-#: super-static-cache-admin.php:102
-#: super-static-cache-admin.php:120
-msgid "Sorry, Not support IIS yet"
-msgstr "暂时还不支持IIS"
+#: options.php:85
+msgid "Rewrite mode"
+msgstr "Rewrite模式"
 
-#: super-static-cache-admin.php:105
-#: super-static-cache-admin.php:123
-msgid "Sorry, Your web server is not detected"
-msgstr "没有监测到您的Web服务器类型"
+#: options.php:97
+#: options.php:111
+#: options.php:118
+msgid "update »"
+msgstr "升级 »"
 
-#: super-static-cache-admin.php:145
-#: super-static-cache-admin.php:159
-msgid "update"
-msgstr "升级"
+#: options.php:100
+msgid "Except Page"
+msgstr "不缓存页面"
 
-#: super-static-cache-admin.php:148
-msgid "No Caching Page"
-msgstr "列外页面"
+#: options.php:101
+msgid "The Kind of Page will not cached if you selected"
+msgstr "以下页面不会被缓存"
 
-#: super-static-cache-admin.php:149
-msgid "If you select, the plugin will not caching these pages.Cached files will not affected. If you select one, you need to delete the cached file."
-msgstr "被选择的页面将不会被缓存，此设置对已经缓存过的文件没有影响"
-
-#: super-static-cache-admin.php:151
-msgid "Home Page"
+#: options.php:103
+msgid "Home"
 msgstr "首页"
 
-#: super-static-cache-admin.php:152
-msgid "Post Page"
-msgstr "文章页面"
+#: options.php:104
+msgid "Single"
+msgstr "文章页"
 
-#: super-static-cache-admin.php:153
-msgid "Category Page"
-msgstr "分类页面"
+#: options.php:105
+msgid "Page"
+msgstr "单页"
 
-#: super-static-cache-admin.php:154
-msgid "Tag Page"
-msgstr "Tag页面"
+#: options.php:106
+msgid "Category"
+msgstr "分类页"
 
-#: super-static-cache-admin.php:155
-msgid "Author Page"
-msgstr "作者页面"
+#: options.php:107
+msgid "Tag"
+msgstr "Tag页"
 
-#: super-static-cache-admin.php:156
-msgid "date Page"
-msgstr "日期页面"
+#: options.php:108
+msgid "Archives"
+msgstr "归档页"
 
-#: super-static-cache-admin.php:157
+#: options.php:109
 msgid "Feed(Recommended)"
 msgstr "XSS源(推荐)"
 
-#: super-static-cache-admin.php:162
+#: options.php:114
+msgid "Enable Strict Cache Mode"
+msgstr "严格缓存模式"
+
+#: options.php:116
+msgid "On"
+msgstr "开启"
+
+#: options.php:117
+msgid "Off"
+msgstr "关闭"
+
+#: options.php:122
 msgid "Purge cache files"
 msgstr "清除缓存文件"
 
-#: super-static-cache-admin.php:163
-msgid "You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br/>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br/>For example, you input /a.html, It will purge a.html on your wordpress path rather than the other documents"
-msgstr "你可以输入一个文件名来，当输入的是一个文件时，这个文件会被直接清除，当输入是一个目录时，目录和目录下的文件都会被清除。<br/>例如，输入/a.html，系统会清除wordpress安装目录下的a.html文件。"
+#: options.php:123
+msgid "You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br>For example, you input a.html, It will purge a.html on your wordpress path rather than the other documents"
+msgstr "你可以输入一个文件名来，当输入的是一个文件时，这个文件会被直接清除，当输入是一个目录时，目录和目录下的文件都会被清除。<br/>例如，输入a.html，系统会清除wordpress安装目录下的a.html文件。"
 
-#: super-static-cache-admin.php:164
-msgid "Are you really want to do this?"
-msgstr "确定删除？"
-
-#: super-static-cache-admin.php:166
+#: options.php:126
 msgid "Purge Files"
 msgstr "清除缓存"
+
+#: super-static-cache.php:152
+msgid "Cache feature is turned off"
+msgstr "缓存功能被关闭"
+
+#: super-static-cache.php:154
+msgid "You Must update Permalink to enable Super Static Cache"
+msgstr "必须设置合适的固定链接来启用Super Static Cache"
+
+#: super-static-cache.php:156
+msgid "Rewrite Rules Not Update!"
+msgstr "没有更新伪静态规则"
+
+#: super-static-cache.php:158
+msgid "Strict Cache Mode not Support current Permalink!"
+msgstr "严格缓存模式不支持当前固定连接"
+
+#: super-static-cache.php:160
+msgid "Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings"
+msgstr "缓存功能开启，但是由于您的固定链接的设置，可能会出现某些页面返回403的错误"
+
+#: super-static-cache.php:162
+msgid "OK"
+msgstr "OK"
+
+#~ msgid "The plugin prohibited: You dont have write permission on "
+#~ msgstr "插件被禁止：没有写入权限"
+
+#~ msgid "Your Permalinks Setting are not support cache!"
+#~ msgstr "固定链接设置不支持缓存"
+
+#~ msgid "Your PHP version too low to support cache!"
+#~ msgstr "PHP版本过低，不支持缓存"
+
+#~ msgid "Purge "
+#~ msgstr "清除"
+
+#~ msgid " Success"
+#~ msgstr "成功"
+
+#~ msgid " Failure"
+#~ msgstr "失败"
+
+#~ msgid "Notice"
+#~ msgstr "提示"
+
+#~ msgid ""
+#~ "Super Static Cache is developing and maintaining by <a href=\"http://www."
+#~ "hitoy.org/\" target=\"_blank\">Hito</a>.<br/>It is a advanced fully "
+#~ "static cache plugin, with easy configuration and high efficiency. When a "
+#~ "post cached, It will no longer need the Database. It is a better choice "
+#~ "when your posts more than 5000."
+#~ msgstr ""
+#~ "Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank"
+#~ "\">Hito</a>负责开发维护.<br/>它是一款高级纯静态化插件，配置简单缓存效率"
+#~ "高。它会直接缓存html文档，缓存之后，不再需要数据库的支持。当您的wordpress"
+#~ "文章数量超过5000时，Super Static Cache是不错的选择。"
+
+#~ msgid "Have any suggestions, please contact vip@hitoy.org."
+#~ msgstr "有任何问题或者建议，可以联系vip@hitoy.org"
+
+#~ msgid "Rating for This Plugin"
+#~ msgstr "为这个插件评分"
+
+#~ msgid ""
+#~ "Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-"
+#~ "static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me "
+#~ "your needs. This is very useful for my development."
+#~ msgstr ""
+#~ "请为这个插件<a href=\"http://wordpress.org/support/view/plugin-reviews/"
+#~ "super-static-cache\" target=\"_blank\">评分</a>并告诉我您的需求，对这我的"
+#~ "开发很有用。"
+
+#~ msgid "Help Me"
+#~ msgstr "帮助我"
+
+#~ msgid ""
+#~ "You can Donate to this plugin to let this plugin further improve. You Can "
+#~ "also help me to <a href='mailto:vip@hitoy.org'>Improve translation</a>."
+#~ msgstr ""
+#~ "你可以为我<a href='http://www.hitoy.org/donate' target='_blank'>捐款</a>来"
+#~ "保持这个插件的长期开发维护，也可以帮助我<a href='mailto:vip@hitoy.org'>改"
+#~ "善翻译</a>。"
+
+#~ msgid ""
+#~ "Different between direct and rewrite caching: direct caching will caching "
+#~ "all the file on your WP install path, rewrite caching will create a "
+#~ "directory on your WP install path, all the caching files will storage in "
+#~ "this directory, you need to update a rewrite rule to enable this function."
+#~ msgstr ""
+#~ "直接缓存和重写缓存的区别：直接缓存会把缓存文件直接生成在WP的安装目录，重写"
+#~ "缓存会在WP安装目录下创建一个缓存目录，并把缓存文件放到这个缓存目录里面。重"
+#~ "写模式需要服务器支持并增加一条重写规则。"
+
+#~ msgid "direct caching (Recommended)"
+#~ msgstr "直接缓存(推荐)"
+
+#~ msgid "rewrite caching"
+#~ msgstr "重写缓存"
+
+#~ msgid "Sorry, Not support IIS yet"
+#~ msgstr "暂时还不支持IIS"
+
+#~ msgid "No Caching Page"
+#~ msgstr "列外页面"
+
+#~ msgid ""
+#~ "If you select, the plugin will not caching these pages.Cached files will "
+#~ "not affected. If you select one, you need to delete the cached file."
+#~ msgstr "被选择的页面将不会被缓存，此设置对已经缓存过的文件没有影响"
+
+#~ msgid "Post Page"
+#~ msgstr "文章页面"
+
+#~ msgid "Author Page"
+#~ msgstr "作者页面"
+
+#~ msgid "date Page"
+#~ msgstr "日期页面"
+
+#~ msgid "Are you really want to do this?"
+#~ msgstr "确定删除？"
 
 #~ msgid "Feed"
 #~ msgstr "RSS源"
@@ -185,9 +285,3 @@ msgstr "清除缓存"
 
 #~ msgid "列外页面"
 #~ msgstr "no cache page"
-
-#~ msgid "direct mode"
-#~ msgstr "直接缓存"
-
-#~ msgid "rewrite mode"
-#~ msgstr "重写缓存"

@@ -3,253 +3,344 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 2.0.5
+Version: 3.0.0
 Author: Hitoy
 Author URI: http://www.hitoy.org/
  */
-class WpstaticCache{
-	private $wppath;		//wordpress安装路径
-	private $wpuri;			//请求资源名,相对于wordpress，wordpress有可能在二级目录安装，这里必须要获取好
-	private $cachemod;		//缓存方式
-	private $nocachepage;	//不需要缓存的页面
-	private $staticdir;		//php模式时，缓存存放的路径
-	private $cachetag;		//加到缓存后面的标签
-	private $htmlcontent;	//文章的html内容
-	public $docuroot;		//DOCUMENT_ROOT所在路径
-	//初始化获取一些信息
-	public function __construct(){
-		$this->docuroot = str_replace("//","/",str_replace("\\","/",$_SERVER["DOCUMENT_ROOT"])."//");
-		$this->wppath=str_replace("\\","/",ABSPATH);
-		$this->cachemod=get_option("super_static_cache_mode");
-		$this->nocachepage=get_option("super_static_cache_excet");
-		$this->cachedir="super-static-cache";
-		$this->cachetag="\n<!-- This is the static html file created at ".date("Y-m-d H:i:s")." by super static cache -->";
 
-		//获取相对于当前wordpress安装路径的请求url
-		$fullrequesturi=$this->docuroot.$_SERVER["REQUEST_URI"];
-		$fullrequesturi=str_replace("//","/",$fullrequesturi);
-		$this->wpuri=substr($fullrequesturi,strlen($this->wppath)-1);
-	}
-
-	//主函数，开始进行缓存，注册到template_redirect上
-	//只有前台才触发
-	//只支持GET和POST两种请求方式
-	public function init(){
-		if($_SERVER['REQUEST_METHOD'] =="GET" || $_SERVER['REQUEST_METHOD'] =="POST"){
-			ob_start(array($this,"get_request_html"));
-			register_shutdown_function(array($this,"save_cache_content"));
-		}
-	}
-
-	//获取当前访问页面的HTML内容
-	public function get_request_html($html){
-		$this->htmlcontent=trim($html).$this->cachetag;
-		return trim($html);
-	}
-
-	//查看当前固定链接是否支持缓存
-	//固定链接设置方式不能含有问号
-	//固定链接结尾必须{有后缀或者结尾包涵"/"}
-	public function is_support_cache(){
-		$permalink_structure=get_option("permalink_structure");
-		if(empty($permalink_structure)){
-			return false;
-		}else if(stripos($permalink_structure,"?")){
-			return false;
-		}else if( (substr($permalink_structure,strlen($permalink_structure)-1)!="/") && !strstr(substr($permalink_structure,strrpos($permalink_structure,"/")+1),".")){
-			return false;
-		}
-		return true;
-	}
-
-	//获取请求的文件名,绝对路径
-	//当缓存模式为直接缓存时，如果请求为目录，则加上index.html,如果还有请求数据，则为?之前的内容
-	//当缓存模式为PHP模式时，文件名为最后一个/或问号之后的内容加上cacahe dir
-	private function get_request_filename($uri){
-		preg_match("/^([^?]+)?/i",$uri,$match);
-		$realname=$match[1];
-		$realname=urldecode($realname);	//urldecode,解决url含有非ASCII url的缓存问题，不支持windows服务器
-		if($this->cachemod=="direct"){
-			if(substr($realname,strlen($realname)-1,1)=="/"){
-				return $this->wppath.$realname."index.html";
-			}else if(strrpos($realname,"/")<strrpos($realname,".")){
-				return $this->wppath.$realname;
-			}
-		}else if($this->cachemod=="rewrite"){
-			if(substr($realname,strlen($realname)-1,1)=="/"){
-				return $this->wppath.$this->cachedir.$realname."index.html";
-			}else if(strrpos($realname,"/")<strrpos($realname,".")){
-				return $this->wppath.$this->cachedir.$realname;
-			}
-		}
-		/*
-		if($this->cachemod=="direct"&&$this->is_support_cache()){
-			if(substr($realname,strlen($realname)-1,1)=="/"){
-				return $this->wppath.$realname."index.html";
-			}else if(strrpos($realname,"/")<strrpos($realname,".")){
-				return $this->wppath.$realname;
-			}else{
-				return $this->wppath.$realname."/index.html";
-			}
-		}
-		 */
-		return false;//当前页面不支持缓存的情况返回空
-	}
-
-
-	//获取当前页面是否支持缓存
-	//不支持缓存的几个条件:所有属于wordpress程序的页面
-	//后台管理页面，404页面，预览页面，搜索页面,admin_bar展示的页面
-	private function is_current_page_support_cache(){
-		//404,后台页面，搜索页面，预览页面，adminbar展示页面不予缓存
-		if(is_404()||is_search()||is_preview()||is_admin_bar_showing()){
-			return false;
-		}
-		//
-		//根据用户选择的页面不进行缓存
-		$nocache=explode(",",$this->nocachepage);
-		foreach($nocache as $singlepage){
-			$sp="is_".$singlepage;
-			if($sp()){
-				return false;
-			}
-		}
-		return true;
-	}
-
-	//开始缓存，把需要缓存的页面存入目录
-	public function save_cache_content(){
-		if($this->is_current_page_support_cache()){
-			$filename=$this->get_request_filename($this->wpuri);
-			if($filename){
-				@mkdir(dirname($filename),0777,true);
-				file_put_contents($filename,$this->htmlcontent,LOCK_EX);
-			}
-		}
-	}
-
-	//当文章更新时，需要更新以下页面
-	//1.生成当前页面
-	//2.更新列表页
-	public function post_update($id,$post){
-		$url=get_permalink($id);
-
-		//更新首页
-		@rename($this->wppath."index.html",$this->wppath."index.bak");
-		@rename($this->wppath.$this->cachedir."./index.html",$this->wppath.$this->cachedir."/index.bak");
-
-		//删除原来的缓存
-		preg_match("/^[^:]+:\/\/[^\/]+(\S+)/i",$url,$match);
-		$cache=urldecode($match[1]);
-		$uri=substr(str_replace("//","/",$this->docuroot.$cache),strlen($this->wppath)-1);
-		@unlink($this->get_request_filename($uri));
-
-		//更新文章页
-		if(function_exists("curl_init")){
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url); 
-			curl_setopt($ch, CURLOPT_REFERER,$url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_exec($ch); 
-			curl_close($ch); 
-		}else{
-			file_get_contents($url);
-		}
-	}
-
-	//当文章删除时，需要删除缓存
-	//参数uri是相对于wordpress安装目录的uri
-	public function delete_cache($uri){
-		if(empty($uri)) return false;
-
-		if($this->cachemod=="direct"){
-			$aburi=$this->wppath."/".$uri;
-		}else if($this->cachemod=="rewrite"){
-			$aburi=$this->wppath.$this->cachedir."/".$uri;
-		}
-		if(!file_exists($aburi)){
-			return false;
-		}
-		return $this->removeuri($aburi);
-	}
-
-	//递归删除缓存
-	private function removeuri($path){
-		if(is_dir($path)){
-			$file_list= scandir($path);
-			foreach ($file_list as $file){
-				if( $file!='.' && $file!='..' && $file!='rewrite_ok.txt'){
-					$this->removeuri($path.'/'.$file);
-				}
-			}
-			return @rmdir($path);
-		}else{
-			return @unlink($path);
-		}
-	}
-
-	//删除文章时，WP的hook
-	public function trash_post($id){
-		$url=get_permalink($id);
-		preg_match("/^[^:]+:\/\/[^\/]+(\S+)/i",$url,$match);
-		$cache=urldecode($match[1]);
-		$uri=substr(str_replace("//","/",$this->docuroot.$cache),strlen($this->wppath)-1);
-		#@unlink($this->get_request_filename($uri));
-		$this->delete_cache($uri);
-	}
-
-	//安装函数
-	public function install(){
-		add_option("super_static_cache_mode","close");
-		add_option("super_static_cache_excet","author,feed");
-		//创建rewrite缓存目录
-		@mkdir($this->wppath.$this->cachedir,0777,true);
-		file_put_contents($this->wppath.$this->cachedir."/rewrite_ok.txt","This is a test file from rewrite rules,please do not to remove it.\n");
-	}
-	//卸载函数
-	public function unistall(){
-		delete_option("super_static_cache_mode");
-		delete_option("super_static_cache_excet");
-	}
-
-	//获取配置
-	public function get_option($key){
-		if($key=='super_static_cache_mode'){
-			return $this->cachemod;
-		}else if($key="super_static_cache_excet"){
-			return $this->nocachepage;
-		}
-		return;
-	}
-	//更新配置
-	public function update_option($key,$value){
-		if($key=='super_static_cache_mode'){
-			$this->cachemod=$value;
-			update_option($key,$value);
-		}else if($key=='super_static_cache_excet'){
-			$this->nocachepage=$value;
-			update_option($key,$value);
-		}
-	}
+//获取当前页面类型
+function getpagetype(){
+    if(is_404()){
+        return '404';
+    }else if(is_search()){
+        return 'search';
+    }else if(is_preview()){
+        return 'preview';
+    }else if(is_single()){
+        return 'single';
+    }else if(is_tag()){
+        return 'tag';
+    }else if(is_category()){
+        return 'category';
+    }else if(is_home()){
+        return 'home';
+    }else if(is_archive()){
+        return 'archive';
+    }else if(is_admin()){
+        return 'admin';
+    }else if(is_feed()){
+        return 'feed';
+    }else if(is_page()){
+        return 'page';
+    }
+    return 'notfound';
 }
 
-//开始运行
-$staticcache=new WpstaticCache();
+//递归删除文件
+function delete_uri($uri){
+    if(!file_exists($uri)) return '';
+    if(is_file($uri)){return unlink($uri);}
+    $fh = opendir($uri);  
+    while(($row = readdir($fh)) !== false){  
+        if($row == '.' || $row == '..' || $row == 'rewrite_ok.txt'){  
+            continue;  
+        }  
+        if(!is_dir($uri.'/'.$row)){  
+            unlink($uri.'/'.$row);  
+        }  
+        delete_uri($uri.'/'.$row);  
+    }  
+    closedir($fh);  
+    //删除文件之后再删除自身  
+    @rmdir($uri); 
+}
 
-//前台启动
-add_action("template_redirect",array($staticcache,"init"));
+//获取远程url的函数
+//用来更新缓存
+function build_cache($url){
+    if(function_exists("curl_init")){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        curl_setopt($ch, CURLOPT_REFERER,$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT,'super static cache 3.0.0');
+        curl_exec($ch); 
+        curl_close($ch); 
+    }else{
+        file_get_contents($url);
+    }
+}
+
+
+//根据post_id获取所有与文章相关的页面
+//用来在文章更新时，更新这些页面
+function get_related_page($post_id){
+    $urls=array();
+    //category
+    $cates = get_the_category($post_id);
+    foreach($cates as $c){
+        array_push($urls,get_category_link($c->term_id));
+    }
+    //tag
+    $tags = get_the_tags($post_id);
+    if($tags){
+        foreach($tags as $t){
+            array_push($urls,get_tag_link($t->term_id));
+        }
+    }
+    return $urls;
+}
+
+
+//缓存类
+class WPStaticCache{
+    public $wppath;            //WP安装路径，服务器的绝对路径
+    public $docroot;           //网站的DOCUMENt_ROOT
+    public $cachemod;          //缓存方式，关闭，直接缓存，服务器重写，PHP重写
+    private $wpuri;             //用户访问的页面在服务器上存放的地址,相对于wp安装目录
+    private $cachetag;
+    private $htmlcontent;
+    //不缓存的页面，默认
+    private $nocachepage = array('admin','404','search','preview');
+
+    //是否是严格模式缓存，默认开启
+    //开启严格模式将不缓存既没有后缀，又没有以"/"结尾的uri
+    private $isstrict;          
+
+    //siteurl
+    public $siteurl;
+
+    public function __construct(){
+        $this->docroot = str_replace("//","/",str_replace("\\","/",$_SERVER["DOCUMENT_ROOT"])."//");
+        $this->wppath = str_replace("\\","/",ABSPATH);
+        $this->cachemod = get_option("super_static_cache_mode");
+        $this->cachetag="\n<!-- This is the static html file created at ".current_time("Y-m-d H:i:s")." by super static cache -->";
+        $this->isstrict = (get_option('super_static_cache_strict')) ? get_option('super_static_cache_strict') : true;
+
+        //获取用户指定的不缓存的页面,并和系统自定义的合并到一块
+        $usetnocache=trim(get_option("super_static_cache_excet"));
+        $usernocachearr=empty($usetnocache)?array():explode($usetnocache,',');
+        $usernocachearr=array_map('trim',$usernocachearr);
+        $this->nocachepage=array_merge($this->nocachepage,$usernocachearr);
+
+        //获取wpuri,相对与WP安装目录
+        $fullrequesturi=$this->docroot.urldecode($_SERVER["REQUEST_URI"]);
+        $this->wpuri=str_replace("//","/",$fullrequesturi);
+        $this->wpuri=substr($fullrequesturi,strlen($this->wppath));
+
+        $this->siteurl=get_option('siteurl');
+    }
+
+
+    /*获取当前配置是否支持当前缓存模式
+     * 不支持缓存的情况:
+     * 1,缓存功能没有开启
+     * 2,固定链接没有设置
+     * 3,缓存模式为重写，但是重写规则没有更新
+     * 4,开启严格缓存模式，且固定链接不以"/"且没有有后缀的文件名结束
+     * 5,设置的为常规模式, 但是固定连接中含有目录设置, 可能导致某些页面出现访问文件(返回403或者目录文件列表)
+     */
+    public function is_permalink_support_cache(){
+        $permalink_structure=get_option("permalink_structure");
+        //对固定链接进行分析
+        //反斜杠出现的的次数
+        $dircount=substr_count($permalink_structure,'/');
+        //去掉目录之后的文件名
+        $fname=substr($permalink_structure,strripos($permalink_structure,"/")+1);
+
+        if($this->cachemod == 'close'){
+            return array(false,__('Cache feature is turned off'));
+        }else if(empty($permalink_structure)){
+            return array(false,__('You Must update Permalink to enable Super Static Cache','super_static_cache'));
+        }else if($this->cachemod == 'serverrewrite' && !@fopen($this->siteurl."/rewrite_ok.txt","r")){
+            return array(false,__('Rewrite Rules Not Update!','super_static_cache'));
+        }else if($this->isstrict && $fname != "" && !strstr($fname,".")){
+            return array(false,__('Strict Cache Mode not Support current Permalink!','super_static_cache'));
+        }else if($this->cachemod == 'direct' && $dircount > 2){
+            return array(false,__('Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings','super_static_cache'));
+        }
+        return array(true,__('OK','super_static_cache'));
+    }
+
+    //获取当前页面类型是否支持缓存
+    private function is_pagetype_support_cache(){
+        if (in_array(getpagetype(),$this->nocachepage)){
+            return false;
+        }
+        //登陆用户不缓存
+        if(is_user_logged_in()){
+            return false;
+        }
+        return true;
+    }
+
+
+    //主函数，开始进行缓存，注册到template_redirect上
+    //只支持GET和POST两种请求方式
+    public function init(){
+        //print_r(get_related_page(get_the_ID()));
+        //var_dump( $GLOBALS['wpdb']->queries );
+        if($this->cachemod == 'phprewrite' && file_exists($this->get_cache_fname())){
+            //PHP缓存模式时，这里进行匹配并获取缓存内容
+            echo file_get_contents($this->get_cache_fname());
+            exit();
+        }
+        //只对GET请求作出缓存
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+            ob_start(array($this,"get_request_html"));
+            register_shutdown_function(array($this,"save_cache_content"));
+        }
+    }
+
+    //获取当前访问页面的HTML内容
+    private function get_request_html($html){
+        $this->htmlcontent=trim($html).$this->cachetag;
+        return trim($html);
+    }
+
+    //获取要缓存到硬盘上的缓存文件文件名
+    //1, 当前页面类型如果不支持缓存，那么直接返回空
+    //2, 如果缓存模式关闭，也直接返回空
+    //3, 当uri含有.或者/时，都可缓存
+    //4, phprewrite模式，都可以缓存
+    //5, 严格模式，缓存模式为direct或者serverrewrite时，只缓存带后缀或者url结尾为"/"的
+    private function get_cache_fname(){
+        //1,
+        if(!$this->is_pagetype_support_cache()) return false;
+        //2,
+        if($this->cachemod == 'close') return false;
+
+        preg_match("/^([^?]+)?/i",$this->wpuri,$match);
+        $realname=urldecode($match[1]);
+        //去掉目录之后的文件名
+        $fname=substr($realname,strripos($realname,"/")+1);
+
+        if($this->cachemod == 'serverrewrite' || $this->cachemod == 'phprewrite'){
+            $cachedir='super-static-cache';
+        }else {
+            $cachedir='';
+        }
+
+        if($fname == ""){
+            $cachename = $this->wppath.$cachedir.$realname."index.html";
+            return $cachename;
+        }else if(strstr($fname,".")){
+            $cachename = $this->wppath.$cachedir.$realname;
+            return $cachename;
+        }else if($this->cachemod == 'phprewrite' && $fname != "" && !strstr($fname,".")){ 
+            $cachename = $this->wppath.$cachedir.$this->wpuri."/index.html";
+            return $cachename;
+        }
+        return false;
+    }
+
+    //写入并保存缓存
+    public function save_cache_content(){
+        $filename = $this->get_cache_fname();
+        if($filename){
+            @mkdir(dirname($filename),0777,true);
+            file_put_contents($filename,$this->htmlcontent,LOCK_EX);
+        }
+    }
+
+    //删除缓存
+    //传入的参数页面的绝对地址
+    //如http://localhost/hello-wrold/
+    public function delete_cache($url){
+        $uri=substr($url,strlen($this->siteurl));
+        if($this->cachemod == 'serverrewrite' || $this->cachemod == 'phprewrite'){
+            $uri=$this->wppath.'super-static-cache'.$uri;
+        }else if($this->cachemod == 'direct'){
+            $uri=$this->wppath.$uri;
+        }
+        delete_uri($uri);
+        if(file_exists($uri)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //文章更新时的动作
+    //重新建立缓存
+    public function post_update($id,$post){
+        //更新首页
+        $this->delete_cache($this->siteurl.'/index.html');
+        build_cache($this->siteurl);
+
+        //更新文章页
+        $url=get_permalink($id);
+        $this->delete_cache($url);
+        build_cache($url);
+
+        //更新和文章页有关联的其它页面
+        $list=get_related_page($id);
+        foreach($list as $u){
+            $this->delete_cache($u);
+            build_cache($u);
+        }
+    }
+
+    //文章删除时的动作
+    //删除文章，重建缓存
+    public function trash_post($id){
+        //更新首页
+        $this->delete_cache($this->siteurl.'/index.html');
+        build_cache($this->siteurl);
+
+        //删除文章页
+        $url=get_permalink($id);
+        $this->delete_cache($url);
+
+        //更新和文章页有关联的其它页面
+        $list=get_related_page($id);
+        foreach($list as $u){
+            $this->delete_cache($u);
+            build_cache($u);
+        }
+    }
+
+
+    //安装函数
+    public function install(){
+        add_option("super_static_cache_mode","close");
+        add_option("super_static_cache_excet","author,feed");
+        add_option("super_static_cache_strict",false);
+        //创建rewrite缓存目录
+        @mkdir($this->wppath.'super-static-cache',0777,true);
+        file_put_contents($this->wppath."super-static-cache/rewrite_ok.txt","This is a test file from rewrite rules,please do not to remove it.\n");
+    }
+    //卸载函数
+    public function unistall(){
+        delete_option("super_static_cache_mode");
+        delete_option("super_static_cache_excet");
+        delete_option("super_static_cache_strict");
+        //删除
+        unlink($this->wppath."super-static-cache/rewrite_ok.txt");
+        delete_uri($this->wppath.'super-static-cache');
+    }
+
+}
+
+$wpssc = new WPStaticCache();
+add_action("template_redirect",array($wpssc,"init"));
 
 //文章更新
-add_action('publish_post',array($staticcache,'post_update'),10,2);
-add_action('post_updated ',array($staticcache,'post_update'),10,2);
+add_action('publish_post',array($wpssc,'post_update'),10,2);
+add_action('post_updated ',array($wpssc,'post_update'),10,2);
 
 //后台界面展示
 if(is_admin()){
-	//安装和卸载
-	register_activation_hook(__FILE__,array($staticcache,'install'));
-	register_deactivation_hook(__FILE__,array($staticcache,'unistall'));
-	//删除文章动作
-	add_action("trashed_post",array($staticcache,'trash_post'));
-	//后台管理界面
-	require("super-static-cache-admin.php");
+    //安装和卸载
+    register_activation_hook(__FILE__,array($wpssc,'install'));
+    register_deactivation_hook(__FILE__,array($wpssc,'unistall'));
+
+    //删除文章动作
+    add_action("trashed_post",array($wpssc,'trash_post'));
+
+    //后台管理界面
+    require_once("super-static-cache-admin.php");
+   
+    //加载语言
+    load_plugin_textdomain('super_static_cache', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }

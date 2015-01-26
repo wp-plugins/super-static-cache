@@ -3,8 +3,8 @@ Contributors: Hitoy
 Donate link: http://www.hitoy.org/
 Tags: Wordpress Static Cache, Pure static Cache Plugin
 Requires at least: 3.0.1
-Tested up to: 4.0
-Stable tag: 2.0.3
+Tested up to: 4.1
+Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,11 @@ None
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.0.5 =
+* add php cache mode
+* tag and category auto update
+* bug fixed
+
 = 2.0.5 =
 *Nginx rewrite rule fixed
 
