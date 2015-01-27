@@ -42,10 +42,10 @@ function showrewriterule(){
     $is_rewrite_ok=is_rewrite_ok();
     $webscr=getwebserver();
     if ($cachemod == 'serverrewrite' && !$is_rewrite_ok && $webscr == 'apache'){
-        $rwt=file_get_contents(dirname(__FILE__)."./apache_rewrite_rule");
+        $rwt=file_get_contents(dirname(__FILE__)."/apache_rewrite_rule");
         return str_replace('/wp_install_dir/',getwpinstallpath(),$rwt);
     }else if($cachemod == 'serverrewrite' && !$is_rewrite_ok && $webscr == 'nginx'){
-        $rwt=file_get_contents(dirname(__FILE__)."./nginx_rewrite_rule");
+        $rwt=file_get_contents(dirname(__FILE__)."/nginx_rewrite_rule");
         return str_replace('/wp_install_dir/',getwpinstallpath(),$rwt);
     }else if($cachemod == 'serverrewrite' && !$is_rewrite_ok){
         return (__('Your Webserver is ').$webscr.__('We Can not generation a Rewrite Rules for you!'));

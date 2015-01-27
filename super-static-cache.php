@@ -180,6 +180,7 @@ class WPStaticCache{
     public function init(){
         //print_r(get_related_page(get_the_ID()));
         //var_dump( $GLOBALS['wpdb']->queries );
+	//var_dump($this->get_cache_fname());
         if($this->cachemod == 'phprewrite' && file_exists($this->get_cache_fname())){
             //PHP缓存模式时，这里进行匹配并获取缓存内容
             echo file_get_contents($this->get_cache_fname());
@@ -204,7 +205,7 @@ class WPStaticCache{
     //3, 当uri含有.或者/时，都可缓存
     //4, phprewrite模式，都可以缓存
     //5, 严格模式，缓存模式为direct或者serverrewrite时，只缓存带后缀或者url结尾为"/"的
-    private function get_cache_fname(){
+    public function get_cache_fname(){
         //1,
         if(!$this->is_pagetype_support_cache()) return false;
         //2,

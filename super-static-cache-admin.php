@@ -24,7 +24,7 @@ if($_POST['purgesinglefile']){
     if(strpos($delurl,'wp-admin') == 0) return;
     if(strpos($delurl,'wp-content') == 0) return;
     if(strpos($delurl,'wp-includes') == 0) return;
-    return $wpssc->delete_cache($wpssc->siteurl.'/'.$delurl);
+    $wpssc->delete_cache($wpssc->siteurl.'/'.$delurl);
 }
 
 //展示菜单
