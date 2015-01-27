@@ -82,7 +82,7 @@ if(!$notice[0])
 <input type="radio" name="super_static_cache_mode" value="close" <?php echo setselected('close','super_static_cache_mode');?>><?php _e("close","super_static_cache");?>&nbsp;&nbsp;
 <input type="radio" name="super_static_cache_mode" value="direct" <?php echo setselected('direct','super_static_cache_mode');?>><?php _e("Direct Mode","super_static_cache");?>&nbsp;&nbsp;
 <input type="radio" name="super_static_cache_mode" value="phprewrite" <?php echo setselected('phprewrite','super_static_cache_mode');?>><?php _e("PHP Mode","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php echo setselected('serverrewrite','super_static_cache_mode');?> onselect="if(this.checked){alert('aaa');}"><?php _e("Rewrite mode","super_static_cache");?><br><br>
+<input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php echo setselected('serverrewrite','super_static_cache_mode');?> ><?php _e("Rewrite mode","super_static_cache");?><br><br>
 <p>
 
 <?php
@@ -103,7 +103,7 @@ echo '</pre></div>';
 <input type="checkbox" name="super_static_cache_excet[]" value="home" <?php echo setselected('home','super_static_cache_excet');?>><?php _e("Home","super_static_cache");?><br>
 <input type="checkbox" name="super_static_cache_excet[]" value="single" <?php echo setselected('single','super_static_cache_excet');?>><?php _e("Single","super_static_cache");?><br>
 <input type="checkbox" name="super_static_cache_excet[]" value="page" <?php echo setselected('page','super_static_cache_excet');?>><?php _e("Page","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="category" <?php echo setselected('Category','super_static_cache_excet');?>><?php _e("Category","super_static_cache");?><br>
+<input type="checkbox" name="super_static_cache_excet[]" value="category" <?php echo setselected('category','super_static_cache_excet');?>><?php _e("Category","super_static_cache");?><br>
 <input type="checkbox" name="super_static_cache_excet[]" value="tag" <?php echo setselected('tag','super_static_cache_excet');?>><?php _e("Tag","super_static_cache");?><br>
 <input type="checkbox" name="super_static_cache_excet[]" value="archives" <?php echo setselected('archives','super_static_cache_excet');?>><?php _e("Archives","super_static_cache");?><br>
 <input type="checkbox" name="super_static_cache_excet[]" value="feed" <?php echo setselected('feed','super_static_cache_excet');?>><?php _e("Feed(Recommended)","super_static_cache");?><br>
