@@ -3,10 +3,10 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.0.0
+Version: 3.0.1
 Author: Hitoy
 Author URI: http://www.hitoy.org/
- */
+*/
 
 //获取当前页面类型
 function getpagetype(){
@@ -178,9 +178,6 @@ class WPStaticCache{
     //主函数，开始进行缓存，注册到template_redirect上
     //只支持GET和POST两种请求方式
     public function init(){
-        //print_r(get_related_page(get_the_ID()));
-        //var_dump( $GLOBALS['wpdb']->queries );
-	//var_dump($this->get_cache_fname());
         if($this->cachemod == 'phprewrite' && file_exists($this->get_cache_fname())){
             //PHP缓存模式时，这里进行匹配并获取缓存内容
             echo file_get_contents($this->get_cache_fname());
@@ -194,7 +191,7 @@ class WPStaticCache{
     }
 
     //获取当前访问页面的HTML内容
-    private function get_request_html($html){
+    public function get_request_html($html){
         $this->htmlcontent=trim($html).$this->cachetag;
         return trim($html);
     }
@@ -238,7 +235,7 @@ class WPStaticCache{
     //写入并保存缓存
     public function save_cache_content(){
         $filename = $this->get_cache_fname();
-        if($filename){
+        if($filename && strlen($this->htmlcontent) > 0){
             @mkdir(dirname($filename),0777,true);
             file_put_contents($filename,$this->htmlcontent,LOCK_EX);
         }
@@ -326,15 +323,16 @@ class WPStaticCache{
 $wpssc = new WPStaticCache();
 add_action("template_redirect",array($wpssc,"init"));
 
-//文章更新
-add_action('publish_post',array($wpssc,'post_update'),10,2);
-add_action('post_updated ',array($wpssc,'post_update'),10,2);
 
 //后台界面展示
 if(is_admin()){
     //安装和卸载
     register_activation_hook(__FILE__,array($wpssc,'install'));
     register_deactivation_hook(__FILE__,array($wpssc,'unistall'));
+
+    //文章更新
+    add_action('publish_post',array($wpssc,'post_update'),10,2);
+    add_action('post_updated ',array($wpssc,'post_update'),10,2);
 
     //删除文章动作
     add_action("trashed_post",array($wpssc,'trash_post'));

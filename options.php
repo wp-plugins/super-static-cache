@@ -63,7 +63,8 @@ if(!$notice[0])
 <div style="background:#ffc;border:1px solid #333;margin:2px;margin-top:10px;padding:5px;float:right;width:260px">
 <h3 style="text-align:center"><?php _e("About Super Static Cache","super_static_cache");?></h3>
 
-<?php _e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>
+<?php
+_e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>
 <p>Have any suggestions, please contact vip@hitoy.org.</p>
 <h3 style=\"text-align:center\">Rating for This Plugin</h3>
 <p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>
@@ -74,7 +75,8 @@ if(!$notice[0])
 <input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">
 <input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">
 <img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-</form>","super_static_cache");?>
+</form>","super_static_cache");
+?>
 </div>
 <h3><?php _e("Caching Mode","super_static_cache");?></h2>
 <p><?php _e("Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode.","super_static_cache");?></p>
