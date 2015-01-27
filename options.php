@@ -5,7 +5,6 @@ function setselected($key,$value,$checkbox='checked=checked'){
     if($key == get_option($value) || strpos(get_option($value),$key) !== false)
         return $checkbox;
 }
-
 function is_rewrite_ok(){
 global $wpssc;
 if(@fopen($wpssc->siteurl."/rewrite_ok.txt","r")){
@@ -75,7 +74,8 @@ if(!$notice[0])
 <input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">
 <input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">
 <img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-</form></div>","super_static_cache");?>
+</form>","super_static_cache");?>
+</div>
 <h3><?php _e("Caching Mode","super_static_cache");?></h2>
 <p><?php _e("Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode.","super_static_cache");?></p>
 <form action="" method="POST">
@@ -90,7 +90,7 @@ $rwr = showrewriterule();
 if(!empty($rwr)){
 echo '<div><h3 style="font-size:12px">Please Add This rewrite Rules into your Web Server:</h3><pre style="background:white;padding:5px;margin:5px;overflow:auto">';
 echo htmlspecialchars($rwr);
-echo '</pre></div>';
+echo '</pre></div><br/>';
 }
 ?>
 
@@ -125,4 +125,3 @@ echo '</pre></div>';
 <?php echo $wpssc->siteurl.'/';?><input type="text" name="purgesinglefile" style="width:400px"><br><br>
 <input type="submit" class="button-primary" value="<?php _e("Purge Files","super_static_cache");?>">
 </form>
-</div>

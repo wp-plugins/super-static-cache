@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: super static cache 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-26 16:26+0800\n"
-"PO-Revision-Date: 2015-01-26 16:45+0800\n"
+"POT-Creation-Date: 2015-01-27 10:19+0800\n"
+"PO-Revision-Date: 2015-01-27 10:19+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,23 +18,24 @@ msgstr ""
 "X-Poedit-Bookmarks: 0,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: options.php:52
+#: options.php:51
 msgid "Your Webserver is "
 msgstr "您的web服务器为"
 
-#: options.php:52
+#: options.php:51
 msgid "We Can not generation a Rewrite Rules for you!"
 msgstr "不能自动生成伪静态规则"
 
-#: options.php:63
+#: options.php:62
 msgid "Super Static Cache Settings"
 msgstr "Super Static Cache选项"
 
-#: options.php:65
+#: options.php:64
 msgid "About Super Static Cache"
 msgstr "关于Super Static Cache"
 
-#: options.php:67
+#: options.php:66
+#, fuzzy
 msgid ""
 "<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>\n"
 "<p>Have any suggestions, please contact vip@hitoy.org.</p>\n"
@@ -47,8 +48,8 @@ msgid ""
 "<input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">\n"
 "<input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">\n"
 "<img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
-"</form></div>"
-msgstr "<p>Super Static Cache由<a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>开发维护。它是一个高级的纯净台的插件，具有配置简单，运行高效的特点，自动更新缓存的特点。如果您的Wordpress文章数量超过5000、由于访问量大造成数据库压力巨大，这个插件将是一个很好的选择</p><p>有任何问题或建议，请联系vip@hitoy.org</p><h3 style=\"text-align:center\">给这个插件评分</h3><p>请<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">为这个插件评分</a>，并告诉我你的需求</p><br/><p>如果这个插件对你有帮助，欢迎给我<a href=\"http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations\" target=\"_blank\">捐款</a>，以帮助其继续开发维护。</p>"
+"</form>"
+msgstr "<p>Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>开发维护。它是一个高级的纯净台的插件，具有配置简单，运行高效的特点，自动更新缓存的特点。如果您的Wordpress文章数量超过5000、由于访问量大造成数据库压力巨大，这个插件将是一个很好的选择</p><p>有任何问题或建议，请联系vip@hitoy.org</p><h3 style=\"text-align:center\">给这个插件评分</h3><p>请<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">为这个插件评分</a>，并告诉我你的需求</p><br/><p>如果这个插件对你有帮助，欢迎给我<a href=\"http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations\" target=\"_blank\">捐款</a>，以帮助其继续开发维护。</p>"
 
 #: options.php:79
 msgid "Caching Mode"
