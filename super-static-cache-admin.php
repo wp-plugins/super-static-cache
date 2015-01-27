@@ -10,7 +10,6 @@ if($_POST['super_static_cache_mode']){
 if($_POST['super_static_cache_excet']){
     $super_static_cache_excet_arr=$_POST['super_static_cache_excet'];
     $super_static_cache_excet = implode($super_static_cache_excet_arr,',');
-    echo $super_static_cache_excet;
     update_option('super_static_cache_excet',$super_static_cache_excet);
 }
 if($_POST['super_static_cache_strict']){
