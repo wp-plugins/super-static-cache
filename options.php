@@ -52,6 +52,7 @@ function showrewriterule(){
     }
     return false;
 }
+
 ?>
 <div class="wrap">
 <?php 
@@ -90,7 +91,7 @@ _e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.
 <?php
 $rwr = showrewriterule();
 if(!empty($rwr)){
-echo '<div><h3 style="font-size:12px">Please Add This rewrite Rules into your Web Server:</h3><pre style="background:white;padding:5px;margin:5px;overflow:auto">';
+echo '<div><strong>'.__("Please add the following Rewrite Rules to Web Server before all Rules:").'</strong><pre style="background:white;padding:5px;margin:5px;overflow:auto">';
 echo htmlspecialchars($rwr);
 echo '</pre></div><br/>';
 }

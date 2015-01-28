@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.0.1
+Version: 3.0.2
 Author: Hitoy
 Author URI: http://www.hitoy.org/
 */
@@ -115,7 +115,7 @@ class WPStaticCache{
         $this->wppath = str_replace("\\","/",ABSPATH);
         $this->cachemod = get_option("super_static_cache_mode");
         $this->cachetag="\n<!-- This is the static html file created at ".current_time("Y-m-d H:i:s")." by super static cache -->";
-        $this->isstrict = (get_option('super_static_cache_strict')) ? get_option('super_static_cache_strict') : true;
+        $this->isstrict = (bool) get_option('super_static_cache_strict');
 
         //获取用户指定的不缓存的页面,并和系统自定义的合并到一块
         $usetnocache=trim(get_option("super_static_cache_excet"));
@@ -201,7 +201,7 @@ class WPStaticCache{
     //2, 如果缓存模式关闭，也直接返回空
     //3, 当uri含有.或者/时，都可缓存
     //4, phprewrite模式，都可以缓存
-    //5, 严格模式，缓存模式为direct或者serverrewrite时，只缓存带后缀或者url结尾为"/"的
+    //5, 非严格模式，缓存模式为direct或者serverrewrite时，只缓存带后缀或者url结尾为"/"的
     public function get_cache_fname(){
         //1,
         if(!$this->is_pagetype_support_cache()) return false;
@@ -218,14 +218,14 @@ class WPStaticCache{
         }else {
             $cachedir='';
         }
-
+    
         if($fname == ""){
             $cachename = $this->wppath.$cachedir.$realname."index.html";
             return $cachename;
         }else if(strstr($fname,".")){
             $cachename = $this->wppath.$cachedir.$realname;
             return $cachename;
-        }else if($this->cachemod == 'phprewrite' && $fname != "" && !strstr($fname,".")){ 
+        }else if($this->cachemod == 'phprewrite' || !$this->isstrict){ 
             $cachename = $this->wppath.$cachedir.$this->wpuri."/index.html";
             return $cachename;
         }

@@ -30,8 +30,12 @@ None
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.0.2 =
+* fix strict mode cache bug 
+* fix rewrite rule on apache
+
 = 3.0.1 =
-* fixed bug sometimes cache null content
+* fix bug sometimes cache null content
 
 = 3.0.0 =
 * add php cache mode
