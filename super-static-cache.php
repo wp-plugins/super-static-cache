@@ -6,7 +6,7 @@ Description: Super static Cache plugins for Wordpress with a simple configuratio
 Version: 3.0.2
 Author: Hitoy
 Author URI: http://www.hitoy.org/
-*/
+ */
 
 //获取当前页面类型
 function getpagetype(){
@@ -199,9 +199,10 @@ class WPStaticCache{
     //获取要缓存到硬盘上的缓存文件文件名
     //1, 当前页面类型如果不支持缓存，那么直接返回空
     //2, 如果缓存模式关闭，也直接返回空
-    //3, 当uri含有.或者/时，都可缓存
-    //4, phprewrite模式，都可以缓存
-    //5, 非严格模式，缓存模式为direct或者serverrewrite时，只缓存带后缀或者url结尾为"/"的
+    //3, 当uri含有.或者以/结尾时，都可缓存 (http://www.example.com/a.html或http://www.example.com/a/,排除的情况http://www.example.com/a)
+    //4, 缓存模式为phprewrite或者serverrewrite时，缓存3以外的情况
+    //5, 非严格模式，缓存模式为direct时，缓存3以外的情况
+    //6, 其它均不给与缓存
     public function get_cache_fname(){
         //1,
         if(!$this->is_pagetype_support_cache()) return false;
@@ -218,18 +219,23 @@ class WPStaticCache{
         }else {
             $cachedir='';
         }
-    
+
         if($fname == ""){
+            //以'/'结尾的请求
             $cachename = $this->wppath.$cachedir.$realname."index.html";
-            return $cachename;
         }else if(strstr($fname,".")){
+            //含有后置的请求
             $cachename = $this->wppath.$cachedir.$realname;
-            return $cachename;
-        }else if($this->cachemod == 'phprewrite' || !$this->isstrict){ 
-            $cachename = $this->wppath.$cachedir.$this->wpuri."/index.html";
-            return $cachename;
+        }else if($this->cachemod != 'direct'){ 
+            //不管是否严格模式，只要缓存模式不为direct时，都给于缓存
+            $cachename = $this->wppath.$cachedir.$realname."/index.html";
+        }else if(!$this->isstrict && $this->cachemod == 'direct'){
+            //非严格模式，但是缓存模式为direct时,给于缓存
+            $cachename = $this->wppath.$cachedir.$realname."/index.html";
+        }else {
+            $cachename = false;
         }
-        return false;
+        return $cachename;
     }
 
     //写入并保存缓存
@@ -339,7 +345,7 @@ if(is_admin()){
 
     //后台管理界面
     require_once("super-static-cache-admin.php");
-   
+
     //加载语言
     load_plugin_textdomain('super_static_cache', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
