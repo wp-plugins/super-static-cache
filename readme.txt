@@ -1,6 +1,6 @@
 === Super Static Cache ===
 Contributors: Hitoy
-Donate link: http://www.hitoy.org/
+Donate link: http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations
 Tags: Wordpress Static Cache, Pure static Cache Plugin
 Requires at least: 3.0.1
 Tested up to: 4.1
