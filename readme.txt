@@ -8,7 +8,7 @@ Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Super Static Cache
+A fully static cache plugin for wordpress, make your website speed skyrocketed.
 
 == Description ==
 Confused with the Complex settings of wp super cache or cos-html-cache not work on your blog? This is a cache Plugin for WordPress with simple configuration and more efficient caching Efficiency. Your blog will not shut down cause high pressure of databases;
