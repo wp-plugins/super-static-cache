@@ -20,10 +20,10 @@ if($_POST['purgesinglefile']){
     $delurl=trim($_POST['purgesinglefile']);
     $delurl=ltrim($delurl,'/');
     if($delurl == '') return;
-    if(strpos($delurl,'.php')) return;
-    if(strpos($delurl,'wp-admin') == 0) return;
-    if(strpos($delurl,'wp-content') == 0) return;
-    if(strpos($delurl,'wp-includes') == 0) return;
+    if(strripos($delurl,'.php')) return;
+    if(strripos($delurl,'wp-admin')) return;
+    if(strripos($delurl,'wp-content')) return;
+    if(strripos($delurl,'wp-includes')) return;
     $wpssc->delete_cache($wpssc->siteurl.'/'.$delurl);
 }
 
