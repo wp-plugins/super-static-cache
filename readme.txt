@@ -75,4 +75,3 @@ None
 
 = 1.0.2 =
 * Login user visit will not be toggle the cache function to prevent some themes show different Appearance of logged in and non logged in user.
-
