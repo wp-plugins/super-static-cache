@@ -197,17 +197,18 @@ class WPStaticCache{
     }
 
     //获取要缓存到硬盘上的缓存文件文件名
-    //1, 当前页面类型如果不支持缓存，那么直接返回空
-    //2, 如果缓存模式关闭，也直接返回空
+    //1, 如果缓存模式关闭，也直接返回空
+    //2, 当前页面类型如果不支持缓存，那么直接返回空
     //3, 当uri含有.或者以/结尾时，都可缓存 (http://www.example.com/a.html或http://www.example.com/a/,排除的情况http://www.example.com/a)
     //4, 缓存模式为phprewrite或者serverrewrite时，缓存3以外的情况
     //5, 非严格模式，缓存模式为direct时，缓存3以外的情况
     //6, 其它均不给与缓存
     public function get_cache_fname(){
         //1,
-        if(!$this->is_pagetype_support_cache()) return false;
-        //2,
         if($this->cachemod == 'close') return false;
+
+        //2,
+        if(!$this->is_pagetype_support_cache()) return false;
 
         preg_match("/^([^?]+)?/i",$this->wpuri,$match);
         $realname=urldecode($match[1]);
