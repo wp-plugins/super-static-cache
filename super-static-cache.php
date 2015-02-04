@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.0.3
+Version: 3.0.4
 Author: Hitoy
 Author URI: http://www.hitoy.org/
  */
@@ -32,6 +32,8 @@ function getpagetype(){
         return 'feed';
     }else if(is_page()){
         return 'page';
+    }else if(is_trackback()){
+        return 'trackback';
     }
     return 'notfound';
 }
@@ -101,7 +103,7 @@ class WPStaticCache{
     private $cachetag;
     private $htmlcontent;
     //不缓存的页面，默认
-    private $nocachepage = array('admin','404','search','preview');
+    private $nocachepage = array('admin','404','search','preview','trackback');
 
     //是否是严格模式缓存，默认开启
     //开启严格模式将不缓存既没有后缀，又没有以"/"结尾的uri
@@ -119,7 +121,7 @@ class WPStaticCache{
 
         //获取用户指定的不缓存的页面,并和系统自定义的合并到一块
         $usetnocache=trim(get_option("super_static_cache_excet"));
-        $usernocachearr=empty($usetnocache)?array():explode($usetnocache,',');
+        $usernocachearr=empty($usetnocache)?array():explode(',',$usetnocache);
         $usernocachearr=array_map('trim',$usernocachearr);
         $this->nocachepage=array_merge($this->nocachepage,$usernocachearr);
 

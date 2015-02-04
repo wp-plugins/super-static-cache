@@ -4,7 +4,7 @@ Donate link: http://www.hitoy.org/super-static-cache-for-wordperss.html#Donation
 Tags: Wordpress Static Cache, WP Cache Plugin, Website caching plugin
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,9 @@ None
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.0.4 =
+* fix expet cache rule bug
+
 = 3.0.3 =
 * fix cache delete bug
 
