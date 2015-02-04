@@ -64,8 +64,9 @@ function build_cache($url){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url); 
         curl_setopt($ch, CURLOPT_REFERER,$url);
+        curl_setopt($ch, CURLOPT_TIMEOUT,10);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT,'super static cache 3.0.0');
+        curl_setopt($ch, CURLOPT_USERAGENT,'super static cache 3');
         curl_exec($ch); 
         curl_close($ch); 
     }else{
