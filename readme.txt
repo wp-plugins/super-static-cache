@@ -89,3 +89,6 @@ super static cache的诞生起初是为了满足我个人的工作需要，和�
 
 = 严格缓存模式和非严格缓存模式是什么？ =
 严格模式和非严格模式仅针对Direct模式，它要解决的是关于URL的问题，严格模式下,类似www.example.com/archives/1这种url是不能被缓存的，非严格模式下，这类的url会被缓存，但是第二次访问服务器一般会重定向到www.example.com/archives/1/(注意后面的斜杠)。如果你使用PHP模式或者Rewrite模式，忽略这项配置即可。
+
+= Why FAQ In Chinese? =
+Need Someone Help me to translate Chinese to English
