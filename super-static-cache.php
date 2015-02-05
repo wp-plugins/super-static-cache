@@ -247,7 +247,9 @@ class WPStaticCache{
     public function save_cache_content(){
         $filename = $this->get_cache_fname();
         if($filename && strlen($this->htmlcontent) > 0){
-            @mkdir(dirname($filename),0777,true);
+            if(!file_exists(dirname($filename))){
+                @mkdir(dirname($filename),0777,true);
+            }
             file_put_contents($filename,$this->htmlcontent,LOCK_EX);
         }
     }
