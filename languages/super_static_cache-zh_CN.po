@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: super static cache 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-28 16:37+0800\n"
-"PO-Revision-Date: 2015-01-29 15:39+0800\n"
+"PO-Revision-Date: 2015-02-07 11:21+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "缓存模式"
 
 #: options.php:83
 msgid "Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode."
-msgstr "Direct模式将会把缓存内容直接存放在服务器上，这是最节省资源的模式，但是这种方式会造成缓存内容缓存困难。<br/>PHP模式将会把缓存内容存放在一个目录里，这样将会方便管理，但PHP模式会依赖数据库服务器，如果您的数据库服务器宕机，网站将不可访问。<br/>Rewrite模式同样会把缓存内容放到一个目录，一旦缓存成功，网站不再依赖数据库，但是您需要在服务器上添加一条伪静态规则"
+msgstr "Direct模式将会把缓存内容直接存放在服务器上，这是最节省资源的模式，但是这种方式会造成缓存内容管理困难。<br/>PHP模式将会把缓存内容存放在一个目录里，这样将会方便管理，但PHP模式会依赖数据库服务器，如果您的数据库服务器宕机，网站将不可访问。<br/>Rewrite模式同样会把缓存内容放到一个目录，一旦缓存成功，网站不再依赖数据库，但是您需要在服务器上添加一条伪静态规则"
 
 #: options.php:85
 msgid "close"
