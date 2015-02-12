@@ -118,7 +118,7 @@ class WPStaticCache{
         $this->docroot = str_replace("//","/",str_replace("\\","/",$_SERVER["DOCUMENT_ROOT"])."//");
         $this->wppath = str_replace("\\","/",ABSPATH);
         $this->cachemod = get_option("super_static_cache_mode");
-        $this->cachetag="\n<!-- This is the static html file created at ".current_time("Y-m-d H:i:s")." by super static cache -->";
+        $this->cachetag="\n<!-- This is the static html file created at ".current_time("Y-m-d H:i:s")." by super static cache -->\n";
         $this->isstrict = (bool) get_option('super_static_cache_strict');
 
         //获取用户指定的不缓存的页面,并和系统自定义的合并到一块
