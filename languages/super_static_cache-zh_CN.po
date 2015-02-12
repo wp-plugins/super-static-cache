@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: super static cache 3.0.0\n"
+"Project-Id-Version: super static cache 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 16:37+0800\n"
-"PO-Revision-Date: 2015-02-07 11:21+0800\n"
+"POT-Creation-Date: 2015-02-12 08:40+0800\n"
+"PO-Revision-Date: 2015-02-12 08:40+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;__\n"
-"X-Poedit-Basepath: E:\\super-static-cache\\\n"
+"X-Poedit-Basepath: E:\\super-static-cache\\trunk\\\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Chinese\n"
 "X-Poedit-Country: CHINA\n"
@@ -37,17 +37,17 @@ msgstr "关于Super Static Cache"
 #: options.php:68
 msgid ""
 "<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>\n"
-"<p>Have any suggestions, please contact vip@hitoy.org.</p>\n"
-"<h3 style=\"text-align:center\">Rating for This Plugin</h3>\n"
-"<p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>\n"
-"<h3 style=\"text-align:center\">Help Me</h3>\n"
-"<p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>\n"
-"<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">\n"
-"<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n"
-"<input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">\n"
-"<input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">\n"
-"<img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
-"</form>"
+"    <p>Have any suggestions, please contact vip@hitoy.org.</p>\n"
+"    <h3 style=\"text-align:center\">Rating for This Plugin</h3>\n"
+"    <p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>\n"
+"    <h3 style=\"text-align:center\">Help Me</h3>\n"
+"    <p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>\n"
+"    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">\n"
+"    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n"
+"    <input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">\n"
+"    <input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">\n"
+"    <img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n"
+"    </form>"
 msgstr "<p>Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>开发维护。它是一个高级的WP缓存插件，配置简单，运行高效，特别适用于文章内容较多，数据库压力较大的网站。</p><p>有任何插件方面的问题，或者发现任何bug，请联系vip@hitoy.org。</p><h3 style=\"text-align:center\">为插件评分</h3><p>您可以为此插件<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">评分</a>，并告诉我你的需求，这对插件的开发非常有用。</p><h3 style=\"text-align:center\">捐款</h3><p>如果次插件对您有帮助，可考虑为它<a href=\"http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations\"  target=\"_blank\">捐款</a>。</p>"
 
 #: options.php:82
@@ -75,96 +75,96 @@ msgid "Rewrite mode"
 msgstr "Rewrite模式"
 
 #: options.php:94
-msgid "Please add the following Rewrite Rules to Web Server before all Rules:"
-msgstr "请把下面的伪静态规则加入到Web服务器中(加在WordPress伪静态规则之前)"
+msgid "<div><strong>Please add the following Rewrite Rules to Web Server before all Rules:</strong>"
+msgstr "<div><strong>请把下面的伪静态规则加入到Web服务器中(加在WordPress伪静态规则之前):</strong>"
 
-#: options.php:100
-#: options.php:114
-#: options.php:121
+#: options.php:101
+#: options.php:115
+#: options.php:122
 msgid "update »"
 msgstr "升级 »"
 
-#: options.php:103
+#: options.php:104
 msgid "Except Page"
 msgstr "不缓存页面"
 
-#: options.php:104
+#: options.php:105
 msgid "The Kind of Page will not cached if you selected"
 msgstr "以下页面不会被缓存"
 
-#: options.php:106
+#: options.php:107
 msgid "Home"
 msgstr "首页"
 
-#: options.php:107
+#: options.php:108
 msgid "Single"
 msgstr "文章页"
 
-#: options.php:108
+#: options.php:109
 msgid "Page"
 msgstr "单页"
 
-#: options.php:109
+#: options.php:110
 msgid "Category"
 msgstr "分类页"
 
-#: options.php:110
+#: options.php:111
 msgid "Tag"
 msgstr "Tag页"
 
-#: options.php:111
+#: options.php:112
 msgid "Archives"
 msgstr "归档页"
 
-#: options.php:112
+#: options.php:113
 msgid "Feed(Recommended)"
 msgstr "XSS源(推荐)"
 
-#: options.php:117
+#: options.php:118
 msgid "Enable Strict Cache Mode"
 msgstr "严格缓存模式"
 
-#: options.php:119
+#: options.php:120
 msgid "On"
 msgstr "开启"
 
-#: options.php:120
+#: options.php:121
 msgid "Off"
 msgstr "关闭"
 
-#: options.php:125
+#: options.php:126
 msgid "Purge cache files"
 msgstr "清除缓存文件"
 
-#: options.php:126
+#: options.php:127
 msgid "You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br>For example, you input a.html, It will purge a.html on your wordpress path rather than the other documents"
 msgstr "你可以输入一个文件名来，当输入的是一个文件时，这个文件会被直接清除，当输入是一个目录时，目录和目录下的文件都会被清除。<br/>例如，输入a.html，系统会清除wordpress安装目录下的a.html文件。"
 
-#: options.php:129
+#: options.php:130
 msgid "Purge Files"
 msgstr "清除缓存"
 
-#: super-static-cache.php:152
+#: super-static-cache.php:156
 msgid "Cache feature is turned off"
 msgstr "缓存功能被关闭"
 
-#: super-static-cache.php:154
+#: super-static-cache.php:158
 msgid "You Must update Permalink to enable Super Static Cache"
 msgstr "必须设置合适的固定链接来启用Super Static Cache"
 
-#: super-static-cache.php:156
+#: super-static-cache.php:160
 msgid "Rewrite Rules Not Update!"
 msgstr "没有更新伪静态规则"
 
-#: super-static-cache.php:158
+#: super-static-cache.php:162
 msgid "Strict Cache Mode not Support current Permalink!"
 msgstr "严格缓存模式不支持当前固定连接"
 
-#: super-static-cache.php:160
+#: super-static-cache.php:164
 msgid "Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings"
 msgstr "缓存功能开启，但是由于您的固定链接的设置，可能会出现某些页面返回403的错误"
 
-#: super-static-cache.php:162
+#: super-static-cache.php:166
 msgid "OK"
 msgstr "OK"
 

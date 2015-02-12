@@ -6,11 +6,11 @@ function setselected($key,$value,$checkbox='checked=checked'){
         return $checkbox;
 }
 function is_rewrite_ok(){
-global $wpssc;
-if(@fopen($wpssc->siteurl."/rewrite_ok.txt","r")){
-    return true;
-}
-return false;
+    global $wpssc;
+    if(@fopen($wpssc->siteurl."/rewrite_ok.txt","r")){
+        return true;
+    }
+    return false;
 }
 
 function getwebserver(){
@@ -65,18 +65,18 @@ if(!$notice[0])
 <h3 style="text-align:center"><?php _e("About Super Static Cache","super_static_cache");?></h3>
 
 <?php
-_e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>
-<p>Have any suggestions, please contact vip@hitoy.org.</p>
-<h3 style=\"text-align:center\">Rating for This Plugin</h3>
-<p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>
-<h3 style=\"text-align:center\">Help Me</h3>
-<p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>
-<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">
-<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
-<input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">
-<input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">
-<img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-</form>","super_static_cache");
+    _e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>
+    <p>Have any suggestions, please contact vip@hitoy.org.</p>
+    <h3 style=\"text-align:center\">Rating for This Plugin</h3>
+    <p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>
+    <h3 style=\"text-align:center\">Help Me</h3>
+    <p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>
+    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">
+    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
+    <input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">
+    <input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">
+    <img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">
+    </form>","super_static_cache");
 ?>
 </div>
 <h3><?php _e("Caching Mode","super_static_cache");?></h2>
@@ -91,9 +91,10 @@ _e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.
 <?php
 $rwr = showrewriterule();
 if(!empty($rwr)){
-echo '<div><strong>'.__("Please add the following Rewrite Rules to Web Server before all Rules:").'</strong><pre style="background:white;padding:5px;margin:5px;overflow:auto">';
-echo htmlspecialchars($rwr);
-echo '</pre></div><br/>';
+    _e("<div><strong>Please add the following Rewrite Rules to Web Server before all Rules:</strong>","super_static_cache");
+    echo "<pre style=\"background:white;padding:5px;margin:5px;overflow:auto\">";
+    echo htmlspecialchars($rwr);
+    echo '</pre></div><br/>';
 }
 ?>
 
