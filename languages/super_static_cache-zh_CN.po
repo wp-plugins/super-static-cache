@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: super static cache 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-12 08:40+0800\n"
-"PO-Revision-Date: 2015-02-12 08:40+0800\n"
+"POT-Creation-Date: 2015-03-02 17:18+0800\n"
+"PO-Revision-Date: 2015-03-02 17:18+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,23 +18,53 @@ msgstr ""
 "X-Poedit-Bookmarks: 0,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: options.php:51
+#: options.php:52
 msgid "Your Webserver is "
 msgstr "您的web服务器是"
 
-#: options.php:51
+#: options.php:52
 msgid "We Can not generation a Rewrite Rules for you!"
 msgstr "不能自动生成伪静态规则"
 
-#: options.php:63
+#: options.php:71
+#: super-static-cache.php:156
+msgid "Cache feature is turned off"
+msgstr "缓存功能被关闭"
+
+#: options.php:73
+#: super-static-cache.php:158
+msgid "You Must update Permalink to enable Super Static Cache"
+msgstr "必须设置合适的固定链接来启用Super Static Cache"
+
+#: options.php:75
+#: super-static-cache.php:160
+msgid "Rewrite Rules Not Update!"
+msgstr "没有更新伪静态规则"
+
+#: options.php:77
+#: super-static-cache.php:162
+msgid "Strict Cache Mode not Support current Permalink!"
+msgstr "严格缓存模式不支持当前固定连接"
+
+#: options.php:79
+#: super-static-cache.php:164
+msgid "Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings"
+msgstr "缓存功能开启，但是由于您的固定链接的设置，可能会出现某些页面返回403的错误"
+
+#: options.php:81
+#: super-static-cache.php:166
+msgid "OK"
+msgstr "OK"
+
+#: options.php:91
 msgid "Super Static Cache Settings"
 msgstr "Super Static Cache选项"
 
-#: options.php:65
+#: options.php:93
 msgid "About Super Static Cache"
 msgstr "关于Super Static Cache"
 
-#: options.php:68
+#: options.php:96
 msgid ""
 "<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>\n"
 "    <p>Have any suggestions, please contact vip@hitoy.org.</p>\n"
@@ -50,121 +80,97 @@ msgid ""
 "    </form>"
 msgstr "<p>Super Static Cache由<a href=\"http://www.hitoy.org/\" target=\"_blank\">Hito</a>开发维护。它是一个高级的WP缓存插件，配置简单，运行高效，特别适用于文章内容较多，数据库压力较大的网站。</p><p>有任何插件方面的问题，或者发现任何bug，请联系vip@hitoy.org。</p><h3 style=\"text-align:center\">为插件评分</h3><p>您可以为此插件<a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">评分</a>，并告诉我你的需求，这对插件的开发非常有用。</p><h3 style=\"text-align:center\">捐款</h3><p>如果次插件对您有帮助，可考虑为它<a href=\"http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations\"  target=\"_blank\">捐款</a>。</p>"
 
-#: options.php:82
+#: options.php:110
 msgid "Caching Mode"
 msgstr "缓存模式"
 
-#: options.php:83
+#: options.php:111
 msgid "Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode."
 msgstr "Direct模式将会把缓存内容直接存放在服务器上，这是最节省资源的模式，但是这种方式会造成缓存内容管理困难。<br/>PHP模式将会把缓存内容存放在一个目录里，这样将会方便管理，但PHP模式会依赖数据库服务器，如果您的数据库服务器宕机，网站将不可访问。<br/>Rewrite模式同样会把缓存内容放到一个目录，一旦缓存成功，网站不再依赖数据库，但是您需要在服务器上添加一条伪静态规则"
 
-#: options.php:85
+#: options.php:113
 msgid "close"
 msgstr "关闭缓存"
 
-#: options.php:86
+#: options.php:114
 msgid "Direct Mode"
 msgstr "Direct模式"
 
-#: options.php:87
+#: options.php:115
 msgid "PHP Mode"
 msgstr "PHP模式"
 
-#: options.php:88
+#: options.php:116
 msgid "Rewrite mode"
 msgstr "Rewrite模式"
 
-#: options.php:94
+#: options.php:122
 msgid "<div><strong>Please add the following Rewrite Rules to Web Server before all Rules:</strong>"
 msgstr "<div><strong>请把下面的伪静态规则加入到Web服务器中(加在WordPress伪静态规则之前):</strong>"
 
-#: options.php:101
-#: options.php:115
-#: options.php:122
+#: options.php:129
+#: options.php:143
+#: options.php:150
 msgid "update »"
 msgstr "升级 »"
 
-#: options.php:104
+#: options.php:132
 msgid "Except Page"
 msgstr "不缓存页面"
 
-#: options.php:105
+#: options.php:133
 msgid "The Kind of Page will not cached if you selected"
 msgstr "以下页面不会被缓存"
 
-#: options.php:107
+#: options.php:135
 msgid "Home"
 msgstr "首页"
 
-#: options.php:108
+#: options.php:136
 msgid "Single"
 msgstr "文章页"
 
-#: options.php:109
+#: options.php:137
 msgid "Page"
 msgstr "单页"
 
-#: options.php:110
+#: options.php:138
 msgid "Category"
 msgstr "分类页"
 
-#: options.php:111
+#: options.php:139
 msgid "Tag"
 msgstr "Tag页"
 
-#: options.php:112
+#: options.php:140
 msgid "Archives"
 msgstr "归档页"
 
-#: options.php:113
+#: options.php:141
 msgid "Feed(Recommended)"
 msgstr "XSS源(推荐)"
 
-#: options.php:118
+#: options.php:146
 msgid "Enable Strict Cache Mode"
 msgstr "严格缓存模式"
 
-#: options.php:120
+#: options.php:148
 msgid "On"
 msgstr "开启"
 
-#: options.php:121
+#: options.php:149
 msgid "Off"
 msgstr "关闭"
 
-#: options.php:126
+#: options.php:154
 msgid "Purge cache files"
 msgstr "清除缓存文件"
 
-#: options.php:127
+#: options.php:155
 msgid "You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br>For example, you input a.html, It will purge a.html on your wordpress path rather than the other documents"
 msgstr "你可以输入一个文件名来，当输入的是一个文件时，这个文件会被直接清除，当输入是一个目录时，目录和目录下的文件都会被清除。<br/>例如，输入a.html，系统会清除wordpress安装目录下的a.html文件。"
 
-#: options.php:130
+#: options.php:158
 msgid "Purge Files"
 msgstr "清除缓存"
-
-#: super-static-cache.php:156
-msgid "Cache feature is turned off"
-msgstr "缓存功能被关闭"
-
-#: super-static-cache.php:158
-msgid "You Must update Permalink to enable Super Static Cache"
-msgstr "必须设置合适的固定链接来启用Super Static Cache"
-
-#: super-static-cache.php:160
-msgid "Rewrite Rules Not Update!"
-msgstr "没有更新伪静态规则"
-
-#: super-static-cache.php:162
-msgid "Strict Cache Mode not Support current Permalink!"
-msgstr "严格缓存模式不支持当前固定连接"
-
-#: super-static-cache.php:164
-msgid "Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings"
-msgstr "缓存功能开启，但是由于您的固定链接的设置，可能会出现某些页面返回403的错误"
-
-#: super-static-cache.php:166
-msgid "OK"
-msgstr "OK"
 
