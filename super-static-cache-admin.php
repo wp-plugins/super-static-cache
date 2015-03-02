@@ -2,6 +2,11 @@
 /*后台管理界面*/
 /*最后更新 2015年1月26日*/
 
+//展示菜单
+function display_cache_menu(){
+    add_options_page('Super Static Cache', 'Super Static Cache', 'manage_options','super-static-cache-admin.php', 'show_cache_manage');
+}
+
 //更新配置
 if($_POST['super_static_cache_mode']){
     $super_static_cache_mode=trim($_POST['super_static_cache_mode']);
@@ -27,10 +32,6 @@ if($_POST['purgesinglefile']){
     $wpssc->delete_cache($wpssc->siteurl.'/'.$delurl);
 }
 
-//展示菜单
-function display_cache_menu(){
-    add_options_page('Super Static Cache', 'Super Static Cache', 'manage_options','super-static-cache-admin.php', 'show_cache_manage');
-}
 function show_cache_manage(){
     require_once(dirname(__FILE__).'/options.php');
 }
