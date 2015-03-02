@@ -1,10 +1,12 @@
 <?php
 global $wpssc;
 
+//多选框
 function setselected($key,$value,$checkbox='checked=checked'){
     if($key == get_option($value) || strpos(get_option($value),$key) !== false)
         return $checkbox;
 }
+//判断伪静态是否配置好
 function is_rewrite_ok(){
     global $wpssc;
     if(@fopen($wpssc->siteurl."/rewrite_ok.txt","r")){
@@ -12,7 +14,7 @@ function is_rewrite_ok(){
     }
     return false;
 }
-
+//获取web服务器类型
 function getwebserver(){
     $software=strtolower($_SERVER["SERVER_SOFTWARE"]);
     switch ($software){
@@ -30,15 +32,14 @@ function getwebserver(){
     }
 }
 
-
+//获取WP安装目录
 function getwpinstallpath(){
     global $wpssc;
     return "/".substr($wpssc->wppath,strlen($wpssc->docroot));
 }
-
+//显示伪静态规则(当用户没有更新伪静态规则时)
 function showrewriterule(){
-    global $wpssc;
-    $cachemod=$wpssc->cachemod;
+    $cachemod=get_option("super_static_cache_mode");
     $is_rewrite_ok=is_rewrite_ok();
     $webscr=getwebserver();
     if ($cachemod == 'serverrewrite' && !$is_rewrite_ok && $webscr == 'apache'){
@@ -52,11 +53,38 @@ function showrewriterule(){
     }
     return false;
 }
+/*获取警告信息，主要是对缓存模式选择进行通知
+ * 同is_permalink_support_cache
+ */
+function notice_msg(){
+    $permalink_structure=get_option("permalink_structure");
+    $cachemod=get_option("super_static_cache_mode");
+    $isstrict=get_option("super_static_cache_strict");
+    $siteurl=get_option("siteurl");
+    //对固定链接进行分析
+    //反斜杠出现的的次数
+    $dircount=substr_count($permalink_structure,'/');
+    //去掉目录之后的文件名
+    $fname=substr($permalink_structure,strripos($permalink_structure,"/")+1);
+
+    if($cachemod == 'close'){
+        return array(false,__('Cache feature is turned off','super_static_cache'));
+    }else if(empty($permalink_structure)){
+        return array(false,__('You Must update Permalink to enable Super Static Cache','super_static_cache'));
+    }else if($cachemod == 'serverrewrite' && !is_rewrite_ok()){
+        return array(false,__('Rewrite Rules Not Update!','super_static_cache'));
+    }else if($isstrict && $fname != "" && !strstr($fname,".")){
+        return array(false,__('Strict Cache Mode not Support current Permalink!','super_static_cache'));
+    }else if($cachemod == 'direct' && $dircount > 2){
+        return array(false,__('Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings','super_static_cache'));
+    }
+    return array(true,__('OK','super_static_cache'));
+}
 
 ?>
 <div class="wrap">
 <?php 
-$notice=$wpssc->is_permalink_support_cache();
+$notice=notice_msg();
 if(!$notice[0])
     echo '<div style="width:96%;padding:2%;background:#B7D69F"><strong style="font-size:18px">Notice:</strong><br>'.$notice[1].'</div>'
 ?>

@@ -26,6 +26,9 @@ After you install this plugin,  do not forget to enable the cache function in  t
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.0.8 =
+* Bug fixed of notice in background management page
+
 = 3.0.7 =
 * Nginx & Apache Rewrite Rule Update
 * Fix Bug Search function not work when home page is cached
