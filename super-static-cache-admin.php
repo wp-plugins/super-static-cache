@@ -14,9 +14,10 @@ add_action('admin_menu', 'display_cache_menu');
 //增加管理链接
 function ssc_action_links($links,$pluginfile){
     if($pluginfile == 'super-static-cache/super-static-cache.php'){
-        $link=array();
-        $link[]='<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super-static-cache').'</a>';
-        array_unshift($links, $link);
+        $link=array(
+            '<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super_static_cache').'</a>'
+        );
+        $links = array_merge($link, $links);
     }
     return $links;
 }
@@ -24,15 +25,15 @@ add_filter('plugin_action_links', 'ssc_action_links',10,2);
 
 //增加其它配置连接
 function ssc_row_meta($links,$pluginfile){
-        if($pluginfile == 'super-static-cache/super-static-cache.php'){
-            $link=array(
-                '<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super-static-cache').'</a>',
-                '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html">'.__('Support','super-static-cache').'</a>',
-                '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations">'.__('Donate','super-static-cache').'</a>'
-            );
-                $links = array_merge($links,$link);
-        }
-        return $links;
+    if($pluginfile == 'super-static-cache/super-static-cache.php'){
+        $link=array(
+            '<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super_static_cache').'</a>',
+            '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html">'.__('Support','super_static_cache').'</a>',
+            '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations">'.__('Donate','super_static_cache').'</a>'
+        );
+        $links = array_merge($links,$link);
+    }
+    return $links;
 }
 add_filter('plugin_row_meta','ssc_row_meta',10,2);
 
