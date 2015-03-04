@@ -4,8 +4,37 @@
 
 //展示菜单
 function display_cache_menu(){
-    add_options_page('Super Static Cache', 'Super Static Cache', 'manage_options','super-static-cache-admin.php', 'show_cache_manage');
+    add_options_page('Super Static Cache', 'Super Static Cache', 'manage_options',__FILE__, 'show_cache_manage');
 }
+function show_cache_manage(){
+    require_once(dirname(__FILE__).'/options.php');
+}
+add_action('admin_menu', 'display_cache_menu');
+
+//增加管理链接
+function ssc_action_links($links,$pluginfile){
+    if($pluginfile == 'super-static-cache/super-static-cache.php'){
+        $link=array();
+        $link[]='<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super-static-cache').'</a>';
+        array_unshift($links, $link);
+    }
+    return $links;
+}
+add_filter('plugin_action_links', 'ssc_action_links',10,2);
+
+//增加其它配置连接
+function ssc_row_meta($links,$pluginfile){
+        if($pluginfile == 'super-static-cache/super-static-cache.php'){
+            $link=array(
+                '<a href="'. get_admin_url(null, 'options-general.php?page=super-static-cache/super-static-cache-admin.php') .'">'.__('Settings','super-static-cache').'</a>',
+                '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html">'.__('Support','super-static-cache').'</a>',
+                '<a href="http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations">'.__('Donate','super-static-cache').'</a>'
+            );
+                $links = array_merge($links,$link);
+        }
+        return $links;
+}
+add_filter('plugin_row_meta','ssc_row_meta',10,2);
 
 //更新配置
 if($_POST['super_static_cache_mode']){
@@ -31,9 +60,3 @@ if($_POST['purgesinglefile']){
     if(strripos($delurl,'wp-includes')) return;
     $wpssc->delete_cache($wpssc->siteurl.'/'.$delurl);
 }
-
-function show_cache_manage(){
-    require_once(dirname(__FILE__).'/options.php');
-}
-
-add_action('admin_menu', 'display_cache_menu');

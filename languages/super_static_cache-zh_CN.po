@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: super static cache 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-02 17:18+0800\n"
-"PO-Revision-Date: 2015-03-02 17:18+0800\n"
+"POT-Creation-Date: 2015-03-04 15:17+0800\n"
+"PO-Revision-Date: 2015-03-04 15:17+0800\n"
 "Last-Translator: hitoy <vip@hitoy.org>\n"
 "Language-Team: hitoy <vip@hitoy.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,32 +27,32 @@ msgid "We Can not generation a Rewrite Rules for you!"
 msgstr "不能自动生成伪静态规则"
 
 #: options.php:71
-#: super-static-cache.php:156
+#: super-static-cache.php:176
 msgid "Cache feature is turned off"
 msgstr "缓存功能被关闭"
 
 #: options.php:73
-#: super-static-cache.php:158
+#: super-static-cache.php:178
 msgid "You Must update Permalink to enable Super Static Cache"
 msgstr "必须设置合适的固定链接来启用Super Static Cache"
 
 #: options.php:75
-#: super-static-cache.php:160
+#: super-static-cache.php:180
 msgid "Rewrite Rules Not Update!"
 msgstr "没有更新伪静态规则"
 
 #: options.php:77
-#: super-static-cache.php:162
+#: super-static-cache.php:182
 msgid "Strict Cache Mode not Support current Permalink!"
 msgstr "严格缓存模式不支持当前固定连接"
 
 #: options.php:79
-#: super-static-cache.php:164
+#: super-static-cache.php:184
 msgid "Cache is enabled, But Some Pages May return 403 status or a index page cause your Permalink Settings"
 msgstr "缓存功能开启，但是由于您的固定链接的设置，可能会出现某些页面返回403的错误"
 
 #: options.php:81
-#: super-static-cache.php:166
+#: super-static-cache.php:186
 msgid "OK"
 msgstr "OK"
 
@@ -173,4 +173,17 @@ msgstr "你可以输入一个文件名来，当输入的是一个文件时，这
 #: options.php:158
 msgid "Purge Files"
 msgstr "清除缓存"
+
+#: super-static-cache-admin.php:18
+#: super-static-cache-admin.php:29
+msgid "Settings"
+msgstr "设置"
+
+#: super-static-cache-admin.php:30
+msgid "Support"
+msgstr "支持"
+
+#: super-static-cache-admin.php:31
+msgid "Donate"
+msgstr "捐赠"
 
