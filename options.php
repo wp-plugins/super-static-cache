@@ -110,10 +110,10 @@ if(!$notice[0])
 <h3><?php _e("Caching Mode","super_static_cache");?></h2>
 <p><?php _e("Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode.","super_static_cache");?></p>
 <form action="" method="POST">
-<input type="radio" name="super_static_cache_mode" value="close" <?php echo setselected('close','super_static_cache_mode');?>><?php _e("close","super_static_cache");?>&nbsp;&nbsp;
+<input type="radio" name="super_static_cache_mode" value="close" <?php echo setselected('close','super_static_cache_mode');?>><?php _e("Close","super_static_cache");?>&nbsp;&nbsp;
 <input type="radio" name="super_static_cache_mode" value="direct" <?php echo setselected('direct','super_static_cache_mode');?>><?php _e("Direct Mode","super_static_cache");?>&nbsp;&nbsp;
 <input type="radio" name="super_static_cache_mode" value="phprewrite" <?php echo setselected('phprewrite','super_static_cache_mode');?>><?php _e("PHP Mode","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php echo setselected('serverrewrite','super_static_cache_mode');?> ><?php _e("Rewrite mode","super_static_cache");?><br><br>
+<input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php echo setselected('serverrewrite','super_static_cache_mode');?> ><?php _e("Rewrite Mode","super_static_cache");?><br><br>
 <p>
 
 <?php
