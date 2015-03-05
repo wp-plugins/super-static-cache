@@ -87,7 +87,7 @@ function build_cache($url){
         curl_setopt($ch, CURLOPT_REFERER,$url);
         curl_setopt($ch, CURLOPT_TIMEOUT,10);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT,'SSCS/3 (Super Static Cache Spider/3.0; +http://www.hitoy.org/super-static-cache-for-wordperss.html#Spider)');
+        curl_setopt($ch, CURLOPT_USERAGENT,'SSCS/3 (Super Static Cache Spider/3.1; +http://www.hitoy.org/super-static-cache-for-wordperss.html#Spider)');
         curl_exec($ch); 
         curl_close($ch); 
     }else{
