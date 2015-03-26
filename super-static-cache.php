@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.1.1
+Version: 3.1.2
 Author: Hitoy
 Author URI: http://www.hitoy.org/
 Text Domain: super_static_cache
@@ -375,7 +375,8 @@ if(is_admin()){
 
     //文章更新
     add_action('publish_post',array($wpssc,'post_update'),10,2);
-    add_action('post_updated ',array($wpssc,'post_update'),10,2);
+    add_action('post_updated',array($wpssc,'post_update'),10,2);
+    add_action('publish_page',array($wpssc,'post_update'),10,2);
 
     //删除文章动作
     add_action("trashed_post",array($wpssc,'trash_post'));
