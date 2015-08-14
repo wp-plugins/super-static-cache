@@ -100,24 +100,23 @@ div label:first-child {display:inline-block;width:200px}
 .updaterewrite {margin:15px;padding-top:10px;border-top:1px dotted #ccc;display:none}
 .updaterewrite pre {margin:10px;background:rgba(0,128,255,.5)}
 </style>
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
-$(function(){
-        $(".ssc_menu span").click(function(){
-            var index = $(this).index();        
-            $(this).addClass("selected").siblings("span").removeClass("selected");
+jQuery(function(){
+        jQuery(".ssc_menu span").click(function(){
+            var index = jQuery(this).index();        
+            jQuery(this).addClass("selected").siblings("span").removeClass("selected");
             if(index == 0){
-            $(".general").show(0).siblings(".advanced").hide(0);
+            jQuery(".general").show(0).siblings(".advanced").hide(0);
             }else{
-            $(".general").hide(0).siblings(".advanced").show(0);
+            jQuery(".general").hide(0).siblings(".advanced").show(0);
             }
             })
 
-        $("input[name='super_static_cache_mode']").change(function(){
-            if($(this).get(0).value!='direct'){
-            $("input[name='super_static_cache_strict']").attr("disabled","disabled");
+        jQuery("input[name='super_static_cache_mode']").change(function(){
+            if(jQuery(this).get(0).value!='direct'){
+            jQuery("input[name='super_static_cache_strict']").attr("disabled","disabled");
             }else{
-            $("input[name='super_static_cache_strict']").removeAttr("disabled");
+            jQuery("input[name='super_static_cache_strict']").removeAttr("disabled");
             }
             })
         });

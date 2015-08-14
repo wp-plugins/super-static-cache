@@ -4,6 +4,8 @@
 
 //展示菜单
 function display_cache_menu(){
+    wp_register_script('jquery', get_template_directory_uri() . '/jquery.js', array('jquery'), '' ); 
+    wp_enqueue_script('jquery' );
     add_options_page('Super Static Cache', 'Super Static Cache', 'manage_options',__FILE__, 'show_cache_manage');
 }
 function show_cache_manage(){
