@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: https://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.2.0
+Version: 3.2.1
 Author: Hitoy
 Author URI: https://www.hitoy.org/
 Text Domain: super_static_cache
@@ -284,8 +284,10 @@ class WPStaticCache{
     //删除缓存
     //传入的参数页面的绝对地址
     //如http://localhost/hello-wrold/
+    //为了支持utf-8缓存格式，对url进行urldecode处理
     public function delete_cache($url){
         if(strlen($url) == 0) return false;
+        $url=urldecode($url);
         $uri=substr($url,strlen($this->siteurl));
         if($this->cachemod == 'serverrewrite' || $this->cachemod == 'phprewrite'){
             $uri=$this->wppath.'super-static-cache'.$uri;
@@ -332,7 +334,7 @@ class WPStaticCache{
         add_option("super_static_cache_mode","close");
         add_option("super_static_cache_strict",false);
         add_option("super_static_cache_excet","author,feed");
-        add_option("update_cache_action","publish_post,post_updated,trashed_post,publish_page,comment_post,comment_unapproved_to_approved,comment_approved_to_trash,comment_approved_to_spam");
+        add_option("update_cache_action","publish_post,post_updated,trashed_post,publish_page");
 
         //创建rewrite缓存目录
         if(!file_exists($this->wppath.'super-static-cache')){
@@ -360,7 +362,7 @@ add_action("template_redirect",array($wpssc,"init"));
 $update_action_list=explode(",",get_option("update_cache_action"));
 
 //已经通过审核的用户直接发布评论，重新建立缓存
-if(in_array('comment_unapproved_to_approved',$update_action_list)){
+if(in_array('comment_post',$update_action_list)){
    function comment_post_hook($id){
         global $wpssc;
         $comment=get_comment($id);

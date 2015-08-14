@@ -4,11 +4,11 @@ Donate link: http://www.hitoy.org/super-static-cache-for-wordperss.html#Donation
 Tags: Wordpress Static Cache, WP Cache Plugin, Website caching plugin
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 3.2
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A fully static cache plugin for wordpress, make your website speed skyrocketed.
+An efficient caching plugin for wordpress, can create static html files. It provides three cache mode, make your web site faster than ever before.
 
 == Description ==
 Confused with the Complex settings of wp super cache or cos-html-cache not work on your blog? This is a cache Plugin for WordPress with simple configuration and more efficient caching Efficiency. Your blog will not shut down cause high pressure of databases;
@@ -26,28 +26,40 @@ After you install this plugin,  do not forget to enable the cache function in  t
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.2.1 =
+* Bug Fixed
+* Support utf-8 cachefile name in *nix
+
+
 = 3.2.0 =
 * Large update
 * Management interface upgrade
 * add cache management function
 
+
 = 3.1.3 =
 * Fixed Bug document root test error
+
 
 = 3.1.2 =
 * Fixed Bug When update a page that cache not update
 
+
 = 3.1.1 =
 * Bug Fixed
+
 
 = 3.1.0 =
 * Function enhancement
 
+
 = 3.0.9 =
 * Bug fixed
 
+
 = 3.0.8 =
 * Bug fixed of notice in background management page
+
 
 = 3.0.7 =
 * Nginx & Apache Rewrite Rule Update
