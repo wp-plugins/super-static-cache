@@ -356,7 +356,6 @@ class WPStaticCache{
 $wpssc = new WPStaticCache();
 add_action("template_redirect",array($wpssc,"init"));
 
-
 //更新缓存的动作
 $update_action_list=explode(",",get_option("update_cache_action"));
 
