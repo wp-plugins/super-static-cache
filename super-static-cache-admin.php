@@ -126,7 +126,7 @@ function do_update_actions(){
             clear_category_cache();
         }
         if(in_array('tag',$del_type_arr)){
-            clear_category_cache();
+            clear_tag_cache();
         }
         if(in_array('all',$del_type_arr)){
             global $wpssc;
