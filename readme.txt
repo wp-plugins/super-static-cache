@@ -1,5 +1,5 @@
 === Super Static Cache ===
-Contributors: Hitoy
+Contributors: Hito
 Donate link: http://www.hitoy.org/super-static-cache-for-wordperss.html#Donations
 Tags: Wordpress Static Cache, WP Cache Plugin, Website caching plugin
 Requires at least: 3.0.1
