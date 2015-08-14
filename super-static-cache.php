@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Super Static Cache
-Plugin URI: http://www.hitoy.org/super-static-cache-for-wordperss.html
+Plugin URI: https://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super static Cache plugins for Wordpress with a simple configuration and more efficient caching Efficiency, to make your website loader faster than ever. It will cache the html content of your post directly into your website directory. 
-Version: 3.1.3
+Version: 3.2.0
 Author: Hitoy
-Author URI: http://www.hitoy.org/
+Author URI: https://www.hitoy.org/
 Text Domain: super_static_cache
 Domain Path: /languages/
 License: GPL2
@@ -78,16 +78,16 @@ function delete_uri($uri){
     @rmdir($uri); 
 }
 
-//获取远程url的函数
-//用来更新缓存
-function build_cache($url){
+//访问远程url的函数
+//用来自动建立缓存
+function curl($url){
     if(function_exists("curl_init")){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url); 
         curl_setopt($ch, CURLOPT_REFERER,$url);
         curl_setopt($ch, CURLOPT_TIMEOUT,10);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT,'SSCS/3 (Super Static Cache Spider/3.1; +http://www.hitoy.org/super-static-cache-for-wordperss.html#Spider)');
+        curl_setopt($ch, CURLOPT_USERAGENT,'SSCS/3 (Super Static Cache Spider/3.2; +http://www.hitoy.org/super-static-cache-for-wordperss.html#Spider)');
         curl_exec($ch); 
         curl_close($ch); 
     }else{
@@ -119,7 +119,7 @@ function get_related_page($post_id){
 //缓存类
 class WPStaticCache{
     public $wppath;            //WP安装路径，服务器的绝对路径
-    public $docroot;           //网站的DOCUMENt_ROOT
+    public $docroot;           //网站的DOCUMENT_ROOT
     public $cachemod;          //缓存方式，关闭，直接缓存，服务器重写，PHP重写
     private $wpuri;             //用户访问的页面在服务器上存放的地址,相对于wp安装目录
     private $cachetag;
@@ -285,6 +285,7 @@ class WPStaticCache{
     //传入的参数页面的绝对地址
     //如http://localhost/hello-wrold/
     public function delete_cache($url){
+        if(strlen($url) == 0) return false;
         $uri=substr($url,strlen($this->siteurl));
         if($this->cachemod == 'serverrewrite' || $this->cachemod == 'phprewrite'){
             $uri=$this->wppath.'super-static-cache'.$uri;
@@ -299,51 +300,39 @@ class WPStaticCache{
         }
     }
 
-    //文章更新时的动作
-    //重新建立缓存
-    public function post_update($id,$post){
+    //当内容被修改时建立文章缓存
+    //参数，文章ID，或者评论对象
+    public function build_post_cache($obj){
+        if(is_object($obj) && $obj->comment_post_ID){
+            $id= (int) $obj->comment_post_ID;
+        }else if(is_int($obj)){
+            $id = $obj;
+        }else{
+            return;
+        }
         //更新首页
         $this->delete_cache($this->siteurl.'/index.html');
-        build_cache($this->siteurl);
+        curl($this->siteurl);
 
         //更新文章页
         $url=get_permalink($id);
         $this->delete_cache($url);
-        build_cache($url);
+        curl($url);
 
         //更新和文章页有关联的其它页面
         $list=get_related_page($id);
         foreach($list as $u){
             $this->delete_cache($u);
-            build_cache($u);
+            curl($u);
         }
     }
-
-    //文章删除时的动作
-    //删除文章，重建缓存
-    public function trash_post($id){
-        //更新首页
-        $this->delete_cache($this->siteurl.'/index.html');
-        build_cache($this->siteurl);
-
-        //删除文章页
-        $url=get_permalink($id);
-        $this->delete_cache($url);
-
-        //更新和文章页有关联的其它页面
-        $list=get_related_page($id);
-        foreach($list as $u){
-            $this->delete_cache($u);
-            build_cache($u);
-        }
-    }
-
 
     //安装函数
     public function install(){
         add_option("super_static_cache_mode","close");
-        add_option("super_static_cache_excet","author,feed");
         add_option("super_static_cache_strict",false);
+        add_option("super_static_cache_excet","author,feed");
+        add_option("update_cache_action","publish_post,post_updated,trashed_post,publish_page,comment_post,comment_unapproved_to_approved,comment_approved_to_trash,comment_approved_to_spam");
 
         //创建rewrite缓存目录
         if(!file_exists($this->wppath.'super-static-cache')){
@@ -356,6 +345,7 @@ class WPStaticCache{
         delete_option("super_static_cache_mode");
         delete_option("super_static_cache_excet");
         delete_option("super_static_cache_strict");
+        delete_option("update_cache_action");
         //删除
         unlink($this->wppath."super-static-cache/rewrite_ok.txt");
         delete_uri($this->wppath.'super-static-cache');
@@ -367,19 +357,32 @@ $wpssc = new WPStaticCache();
 add_action("template_redirect",array($wpssc,"init"));
 
 
+//更新缓存的动作
+$update_action_list=explode(",",get_option("update_cache_action"));
+
+//已经通过审核的用户直接发布评论，重新建立缓存
+if(in_array('comment_unapproved_to_approved',$update_action_list)){
+   function comment_post_hook($id){
+        global $wpssc;
+        $comment=get_comment($id);
+            if($comment->comment_approved=='1'){
+                $wpssc->build_post_cache($comment);
+            }
+        } 
+    //发布评论的钩子
+    add_action('comment_post','comment_post_hook');
+}
+
 //后台界面展示
 if(is_admin()){
     //安装和卸载
     register_activation_hook(__FILE__,array($wpssc,'install'));
     register_deactivation_hook(__FILE__,array($wpssc,'unistall'));
 
-    //文章更新
-    add_action('publish_post',array($wpssc,'post_update'),10,2);
-    add_action('post_updated',array($wpssc,'post_update'),10,2);
-    add_action('publish_page',array($wpssc,'post_update'),10,2);
-
-    //删除文章动作
-    add_action("trashed_post",array($wpssc,'trash_post'));
+    //当文章发布，更新，评论状态更改时，更新缓存的动作
+    foreach($update_action_list as $action){
+        add_action($action,array($wpssc,'build_post_cache'));
+    }
 
     //后台管理界面
     require_once("super-static-cache-admin.php");

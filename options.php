@@ -1,10 +1,14 @@
 <?php
 global $wpssc;
 
-//多选框
-function setselected($key,$value,$checkbox='checked=checked'){
-    if($key == get_option($value) || strpos(get_option($value),$key) !== false)
-        return $checkbox;
+//设置选择框的状态函数
+function theselected($key,$value,$checkbox='checked=checked'){
+    $arr_val=explode(",",get_option($key));
+    if(in_array($value,$arr_val)){
+        echo $checkbox;
+        return true;
+    }
+    return false;
 }
 //判断伪静态是否配置好
 function is_rewrite_ok(){
@@ -82,78 +86,57 @@ function notice_msg(){
 }
 
 ?>
+
+
 <div class="wrap">
-<?php 
-$notice=notice_msg();
-if(!$notice[0])
-    echo '<div style="width:96%;padding:2%;background:#B7D69F"><strong style="font-size:18px">Notice:</strong><br>'.$notice[1].'</div>'
-?>
-<h2><?php _e("Super Static Cache Settings","super_static_cache");?></h2><hr/>
-<div style="background:#ffc;border:1px solid #333;margin:2px;margin-top:10px;padding:5px;float:right;width:260px">
-<h3 style="text-align:center"><?php _e("About Super Static Cache","super_static_cache");?></h3>
+<style>
+.advanced {display:none}
+.ssc_menu {width:98%;font-size:15px;height:40px;line-height:40px;border-bottom:1px solid #ccc;padding-left:2%;margin-bottom:20px}
+.ssc_menu span {display:block;width:120px;float:left;padding:0 10px;border:1px solid #ccc;border-bottom:none;text-align:center;cursor:pointer;margin-left:-1px;margin-bottom:-1px;font-weight:bold}
+.ssc_menu span.selected {background:white;}
+h3 {margin-left:12px;}
+div label {display:inline-block;margin-left:5px;margin-right:20px}
+div label:first-child {display:inline-block;width:200px}
+.updaterewrite {margin:15px;padding-top:10px;border-top:1px dotted #ccc;display:none}
+.updaterewrite pre {margin:10px;background:rgba(0,128,255,.5)}
+</style>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+$(function(){
+        $(".ssc_menu span").click(function(){
+            var index = $(this).index();        
+            $(this).addClass("selected").siblings("span").removeClass("selected");
+            if(index == 0){
+            $(".general").show(0).siblings(".advanced").hide(0);
+            }else{
+            $(".general").hide(0).siblings(".advanced").show(0);
+            }
+            })
 
+        $("input[name='super_static_cache_mode']").change(function(){
+            if($(this).get(0).value!='direct'){
+            $("input[name='super_static_cache_strict']").attr("disabled","disabled");
+            }else{
+            $("input[name='super_static_cache_strict']").removeAttr("disabled");
+            }
+            })
+        });
+</script>
+    <h2><?php _e('Super Static Cache Settings','super_static_cache');?></h2><br/>
+    <div class="ssc_menu">
+    <span class="selected"><?php _e('General','super_static_cache');?></span>
+        <span><?php _e('Advanced','super_static_cache');?></span>
+    </div>
 <?php
-    _e("<p>Super Static Cache is developing and maintaining by <a href=\"http://www.hitoy.org\/\" target=\"_blank\">Hito</a>.<br>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p>
-    <p>Have any suggestions, please contact vip@hitoy.org.</p>
-    <h3 style=\"text-align:center\">Rating for This Plugin</h3>
-    <p>Please <a href=\"http://wordpress.org/support/view/plugin-reviews/super-static-cache\" target=\"_blank\">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p>
-    <h3 style=\"text-align:center\">Help Me</h3>
-    <p>You can Donate to this plugin to let this plugin further improve. You Can also help me to <a href=\"mailto:vip@hitoy.org\">Improve translation</a>.</p>
-    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">
-    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
-    <input type=\"hidden\" name=\"hosted_button_id\" value=\"3EL4H6L7LY3YS\">
-    <input type=\"image\" src=\"http://www.hitoy.org/wp-content/uploads/donate_paypal.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\">
-    <img border=\"0\" src=\"https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-    </form>","super_static_cache");
+require_once(dirname(__FILE__)."/options-general.php");
+require_once(dirname(__FILE__)."/options-advanced.php");
 ?>
+    <div class="postbox">
+        <h3 class="hndle"><?php _e('About','super_static_cache');?></h3>
+            <div class="inside">
+                <?php
+                    _e('<p>Super Static Cache is developing and maintaining by <a href="https://www.hitoy.org/">Hito</a>.<br/>It is a advanced fully static cache plugin, with easy configuration and high efficiency. When a post cached, It will no longer need the Database. It is a better choice when your posts more than 5000.</p><p>Have any suggestions, please contact vip@hitoy.org.</p><h4>Rating for This Plugin</h4><p>Please <a href="http://wordpress.org/support/view/plugin-reviews/super-static-cache" target="_blank">Rating for this plugin</a> and tell me your needs. This is very useful for my development.</p><h4>Donation</h4><p>You can Donate to this plugin to let this plugin further improve.</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="3EL4H6L7LY3YS"><input type="image" src="http://www.hitoy.org/wp-content/uploads/donate_paypal.gif" border="0" name="submit" alt="PayPal"><img border="0" src="https://www.paypal.com/en_GB/i/btn/btn_donateCC_LG.gif" width="1" height="1"></form>','super_static_cache');
+                ?>
+            </div>
+    </div>
 </div>
-<h3><?php _e("Caching Mode","super_static_cache");?></h2>
-<p><?php _e("Direct Mode Will Save the Cache file directly in your Webserver, it's the most resource saving cache mode, but it's difficult to management the cache files. <br/>PHP Mode Save the Cache file in a Special directory, It's more convenient for you to manage the cache, but this mode still need your databases server, if you mysql server down, the mode will not work.<br/>Rewrite Mode is the recommended cache mode, like PHP Mode, all cache files are saved into a Special Directory, you need to update a rewrite rule to enable this mode.","super_static_cache");?></p>
-<form action="" method="POST">
-<input type="radio" name="super_static_cache_mode" value="close" <?php echo setselected('close','super_static_cache_mode');?>><?php _e("Close","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_mode" value="direct" <?php echo setselected('direct','super_static_cache_mode');?>><?php _e("Direct Mode","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_mode" value="phprewrite" <?php echo setselected('phprewrite','super_static_cache_mode');?>><?php _e("PHP Mode","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php echo setselected('serverrewrite','super_static_cache_mode');?> ><?php _e("Rewrite Mode","super_static_cache");?><br><br>
-<p>
-
-<?php
-$rwr = showrewriterule();
-if(!empty($rwr)){
-    _e("<div><strong>Please add the following Rewrite Rules to Web Server before all Rules:</strong>","super_static_cache");
-    echo "<pre style=\"background:white;padding:5px;margin:5px;overflow:auto\">";
-    echo htmlspecialchars($rwr);
-    echo '</pre></div><br/>';
-}
-?>
-
-<input class="button-primary" type="submit" value="<?php _e("update »","super_static_cache");?>">
-</form>
-<br/>
-<h3><?php _e("Except Page","super_static_cache");?></h3>
-<p><?php _e("The Kind of Page will not cached if you selected","super_static_cache");?></p>
-<form action="" method="POST">
-<input type="checkbox" name="super_static_cache_excet[]" value="home" <?php echo setselected('home','super_static_cache_excet');?>><?php _e("Home","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="single" <?php echo setselected('single','super_static_cache_excet');?>><?php _e("Single","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="page" <?php echo setselected('page','super_static_cache_excet');?>><?php _e("Page","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="category" <?php echo setselected('category','super_static_cache_excet');?>><?php _e("Category","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="tag" <?php echo setselected('tag','super_static_cache_excet');?>><?php _e("Tag","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="archives" <?php echo setselected('archives','super_static_cache_excet');?>><?php _e("Archives","super_static_cache");?><br>
-<input type="checkbox" name="super_static_cache_excet[]" value="feed" <?php echo setselected('feed','super_static_cache_excet');?>><?php _e("Feed(Recommended)","super_static_cache");?><br>
-<br/>
-<input class="button-primary" type="submit" value="<?php _e("update »","super_static_cache");?>">
-</form>
-<br/>
-<h3><?php _e("Enable Strict Cache Mode","super_static_cache");?></h3>
-<form action="" method="POST">
-<input type="radio" name="super_static_cache_strict" value="true" <?php echo setselected(true,'super_static_cache_strict');?>><?php _e("On","super_static_cache");?>&nbsp;&nbsp;
-<input type="radio" name="super_static_cache_strict" value="false" <?php echo setselected(false,'super_static_cache_strict');?>><?php _e("Off","super_static_cache");?>&nbsp;&nbsp;<br/><br/>
-<input class="button-primary" type="submit" value="<?php _e("update »","super_static_cache");?>">
-</form>
-<br/>
-<br/>
-<h3><?php _e("Purge cache files","super_static_cache");?></h3>
-<p><?php _e("You Can Input a cache file name to delete it. If you enter a directory name, All the files in this directory and directory itself will be deleted.<br>If you enter a filename, It just delete the file. Plugin Just delete files in WP install Page. <br>For example, you input a.html, It will purge a.html on your wordpress path rather than the other documents","super_static_cache");?></p>
-<form action="" method="POST" onsubmit="return confirm('Are you really want to do this?')">
-<?php echo $wpssc->siteurl.'/';?><input type="text" name="purgesinglefile" style="width:400px"><br><br>
-<input type="submit" class="button-primary" value="<?php _e("Purge Files","super_static_cache");?>">
-</form>

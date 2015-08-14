@@ -26,6 +26,11 @@ After you install this plugin,  do not forget to enable the cache function in  t
 1. Admin Panel
 
 == Upgrade Notice ==
+= 3.2.0 =
+* Large update
+* Management interface upgrade
+* add cache management function
+
 = 3.1.3 =
 * Fixed Bug document root test error
 
