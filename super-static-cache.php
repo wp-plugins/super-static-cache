@@ -285,7 +285,7 @@ class WPStaticCache{
     //传入的参数页面的绝对地址
     //如http://localhost/hello-wrold/
     //为了支持utf-8缓存格式，对url进行urldecode处理
-    public function delete_cache(string $url){
+    public function delete_cache($url){
         $url=urldecode($url);
         //如果传入URL为空，则返回
         if(strlen($url) == 0) return false;
