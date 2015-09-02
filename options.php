@@ -124,7 +124,7 @@ jQuery(function(){
 <?php
 $notice=notice_msg();
 if($notice[0] === false){
-    echo "<div id=\"message\" class=\"error\">".$notice[1]."</div>";
+    echo "<div id=\"message\" class=\"error\"><p>".$notice[1]."</p></div>";
 }
 ?>
     <h2><?php _e('Super Static Cache Settings','super_static_cache');?></h2><br/>
