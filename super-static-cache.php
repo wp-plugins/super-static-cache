@@ -32,6 +32,9 @@ function getpagetype(){
     if(is_trackback()){
         //文章的trackback也属于single, 所以is_trackback要放在前面
         return 'trackback';
+    }else if(is_attachment()){
+        //文档的attachment也属于single, 所以is_attachment要放在前面
+        return 'attachment';
     }else if(is_feed()){
         return 'feed';
     }else if(is_admin()){
@@ -50,8 +53,6 @@ function getpagetype(){
         return 'page';
     }else if(is_author()){
         return 'author';
-    }else if(is_attachment()){
-        return 'attachment';
     }else if(is_tag()){
         return 'tag';
     }else if(is_category()){
