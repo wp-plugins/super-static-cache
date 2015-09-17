@@ -3,7 +3,7 @@
 Plugin Name: Super Static Cache
 Plugin URI: https://www.hitoy.org/super-static-cache-for-wordperss.html
 Description: Super Static Cache is an efficient WordPress caching engine which provides three cache mode. It can reduce the pressure of the database significantly that makes your website faster than ever.
-Version: 3.2.4
+Version: 3.2.5
 Author: Hito
 Author URI: https://www.hitoy.org/
 Text Domain: super_static_cache
@@ -67,8 +67,19 @@ function getpagetype(){
 
 //递归删除文件
 function delete_uri($uri){
-    if(!file_exists($uri)) return '';
+		if(!$uri) return false;
+
+		//不能清除网站目录之外的文件，不能清空目录本身
+		$docroot=str_replace("//","/",str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"]))."/");
+		if($uri == $docroot || $docroot!=substr($docroot,0,strlen($uri))) return false;
+
+		//文件目录不存在
+    if(!file_exists($uri)) return false;
+
+		//删除文件
     if(is_file($uri)){return unlink($uri);}
+
+
     $fh = opendir($uri);  
     while(($row = readdir($fh)) !== false){  
         if($row == '.' || $row == '..' || $row == 'rewrite_ok.txt'){  
@@ -141,7 +152,7 @@ class WPStaticCache{
     public $siteurl;
 
     public function __construct(){
-        $this->docroot = str_replace("//","/",str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"]))."//");
+        $this->docroot = str_replace("//","/",str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"]))."/");
         $this->wppath = str_replace("\\","/",ABSPATH);
         $this->cachemod = get_option("super_static_cache_mode");
         $this->cachetag="\n<!-- This is the static html file created at ".current_time("Y-m-d H:i:s")." by super static cache -->";
@@ -348,7 +359,7 @@ class WPStaticCache{
 
         //创建rewrite缓存目录
         if(!file_exists($this->wppath.'super-static-cache')){
-            @mkdir($this->wppath.'super-static-cache',0777,true);
+            mkdir($this->wppath.'super-static-cache',0777,true);
         }
         file_put_contents($this->wppath."super-static-cache/rewrite_ok.txt","This is a test file from rewrite rules,please do not to remove it.\n");
     }
@@ -361,12 +372,15 @@ class WPStaticCache{
         //删除
         unlink($this->wppath."super-static-cache/rewrite_ok.txt");
         delete_uri($this->wppath.'super-static-cache');
+				if($this->cachemod=='direct'){
+        	delete_uri($this->wppath.'index.html');
+				}
     }
 
 }
 
 $wpssc = new WPStaticCache();
-add_action("template_redirect",array($wpssc,"init"));
+add_action("wp_loaded",array($wpssc,"init"),1);
 
 //更新缓存的动作
 $update_action_list=explode(",",get_option("update_cache_action"));
