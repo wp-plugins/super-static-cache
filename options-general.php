@@ -9,7 +9,7 @@
     <input type="radio" name="super_static_cache_mode" value="close" <?php  theselected('super_static_cache_mode','close');?>><label><?php _e('close','super_static_cache');?></label>
                 <input type="radio" name="super_static_cache_mode" value="direct" <?php  theselected('super_static_cache_mode','direct');?>><label><?php _e('Direct Mode','super_static_cache');?></label>
                 <input type="radio" name="super_static_cache_mode" value="phprewrite" <?php theselected('super_static_cache_mode','phprewrite');?>><label><?php _e('PHP Mode','super_static_cache');?></label>
-                <input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php theselected('super_static_cache_mode','serverrewrite');?>><label><?php _e('Rewrite Mode','super_static_cache');?></label>
+                <input type="radio" name="super_static_cache_mode" value="serverrewrite" <?php theselected('super_static_cache_mode','serverrewrite');?>><label><?php _e('Rewrite Mode (Recommend)','super_static_cache');?></label>
 
                 <div class="updaterewrite" <?php if(get_option('super_static_cache_mode')=='serverrewrite' && !is_rewrite_ok()){echo 'style="display:block"';}?>>
                     <span><?php _e('Please Add This Rewrite Rules to your webserver:','super_static_cache');?></span>
@@ -40,6 +40,6 @@
                 <div><label><?php _e('Attachment','super_static_cache');?></label><input type="checkbox" name="super_static_cache_excet[]" value="attachment" <?php theselected('super_static_cache_excet','attachment');?>></div>
             </div>
         </div>
-        <input type="submit" class="button-primary" value="<?php _e('Update »','super_static_cache')?>"><br/><br/>
+        <input type="submit" class="button-primary" value="<?php _e('Save','super_static_cache')?>"><br/><br/>
     <form>
 </div>
